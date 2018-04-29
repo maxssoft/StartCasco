@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Text styles-->
+
+    <style name="textBody1"> <!-- Базовый стиль -->
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+
+    <style name="textNormal" parent="textBody1"/> <!-- Основной текст -->
+    <style name="textMedium" parent="textNormal"> <!-- Основной жирный текст -->
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="textStrong" parent="textNormal"> <!-- Основной текст яркий-->
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="textStrongMedium" parent="textStrong"> <!-- Основной жирный яркий текст -->
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="textCaption"> <!-- Вспомогательный текст -->
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_caption</item>
+    </style>
+
+    <style name="textButton"> <!-- Текст на кнопках-->
+        <item name="android:height">@dimen/button_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="textTitle"> <!-- Текст заголовока окна-->
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="textSubhead" parent="textTitle"> <!-- Текст заголовока-->
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="textHeadline"> <!-- Текст крупного заголовока-->
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_headline</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="textTotal" parent="textSubhead"/> <!-- Стиль для итого -->
+
+</resources>

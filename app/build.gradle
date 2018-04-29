@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        minSdkVersion 16
+
+        applicationId "ru.telematica.Kasko2Go"
+        versionCode 1
+        versionName "1.0.1." + versionCode
+
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('keystore.jks')
+            keyAlias RELEASE_STORE_PASSWORD
+            storePassword RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            setProperty("archivesBaseName", defaultConfig.versionName)
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            setProperty("archivesBaseName", defaultConfig.versionName)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:multidex:1.0.0"
+
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+
+    implementation "io.reactivex.rxjava2:rxjava:2.1.5"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    implementation "org.greenrobot:eventbus:3.0.0"
+    implementation "com.github.jinatonic.confetti:confetti:1.1.0"
+
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofiteVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofiteVersion}"
+    implementation "com.squareup.retrofit2:converter-jackson:${rootProject.ext.retrofiteVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.retrofiteVersion}"
+
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:support-vector-drawable:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:animated-vector-drawable:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+
+
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
+}

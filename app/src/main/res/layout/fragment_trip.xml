@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textTitle"
+        style="@style/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/large_block_margin"
+        android:layout_marginRight="@dimen/large_block_margin"
+        android:layout_marginTop="@dimen/large_block_margin"
+        android:gravity="center_horizontal"
+        android:text="@string/trip_title" />
+
+    <TextView
+        android:id="@+id/startInfo"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/large_block_margin"
+        android:layout_marginRight="@dimen/large_block_margin"
+        android:layout_marginTop="@dimen/block_margin"
+        android:gravity="center_horizontal"
+        android:text="@string/trip_info" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startInfo"
+        android:layout_marginLeft="@dimen/block_margin"
+        android:layout_marginRight="@dimen/block_margin"
+        android:layout_marginTop="@dimen/block_margin"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:id="@+id/gpsLevelText"
+                style="@style/textHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="98%"
+                android:textColor="@color/green" />
+
+            <TextView
+                style="@style/textCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/gpsLevelText"
+                android:layout_centerHorizontal="true"
+                android:text="@string/gps_level_title" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:id="@+id/tripTimerText"
+                style="@style/textHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="12:23" />
+
+            <TextView
+                style="@style/textCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tripTimerText"
+                android:layout_centerHorizontal="true"
+                android:text="@string/trip_timer_title" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/finish_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/large_block_margin"
+        android:src="@drawable/ic_stop_driving" />
+
+</RelativeLayout>

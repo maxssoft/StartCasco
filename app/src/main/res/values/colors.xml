@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2e7eff</color>
+    <color name="colorPrimaryDark">#465AC4</color>
+    <color name="colorAccent">#00c332</color>
+    <color name="colorAccent2">#d0021b</color>
+
+    <color name="background">#f6f6f6</color>
+    <color name="divider">#979797</color>
+
+    <color name="error">#d0021b</color>
+    <color name="green">#00c332</color>
+    <color name="white">#ffffff</color>
+
+    <!--Text colors-->
+    <color name="text_primary">#4a4a4a</color>
+    <color name="text_secondary">#9b9b9b</color>
+    <color name="text_disabled">#61000000</color>
+    <color name="text_primary_w">#ffffff</color>
+    <color name="text_secondary_w">#b2ffffff</color>
+    <color name="text_disabled_w">#4cffffff</color>
+
+    <color name="button_disabled">#ffdedede</color>
+    <color name="button_color">@color/colorPrimary</color>
+    <color name="button_pressed">#465AC4</color>
+
+    <color name="score_green">#00C331</color>
+    <color name="score_yellow">#FECD2A</color>
+    <color name="score_orange">#FF6D00</color>
+    <color name="score_red">#E20001</color>
+
+</resources>

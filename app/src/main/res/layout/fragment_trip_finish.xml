@@ -1,0 +1,368 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_margin="@dimen/standard_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/textTitle"
+                style="@style/textNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:text="@string/trip_finish_success"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:id="@+id/textLevel"
+                style="@style/textNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textTitle"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:text="92"
+                android:textColor="@color/green"
+                android:textSize="46sp" />
+
+            <TextView
+                android:id="@+id/textDriveStyle"
+                style="@style/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textLevel"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:text="@string/trip_finish_driving_style" />
+
+            <LinearLayout
+                android:id="@+id/start_stop_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:layout_below="@+id/textDriveStyle"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textStartTime"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28.02.18 12:30"
+                    android:textAllCaps="true" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#979797" />
+
+                <TextView
+                    android:id="@+id/textEndTime"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28.02.18 12:48"
+                    android:textAllCaps="true" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/trip_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_stop_layout">
+
+                <TextView
+                    android:id="@+id/trip_info"
+                    style="@style/textSubhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/trip_finish_trip" />
+                <TextView
+                    android:id="@+id/textTripTime"
+                    style="@style/textSubhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/trip_info"
+                    android:text="23 min" />
+
+                <TextView
+                    android:id="@+id/travel_time"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/trip_info"
+                    android:text="@string/trip_finish_travel_time" />
+                <TextView
+                    android:id="@+id/textTravelTime"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/travel_time"
+                    android:text="12 min" />
+
+                <TextView
+                    android:id="@+id/traffic_time"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/travel_time"
+                    android:text="@string/trip_finish_traffic_time" />
+                <TextView
+                    android:id="@+id/textTrafficTime"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/traffic_time"
+                    android:text="2 min" />
+
+            </RelativeLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_receipt_score_bar_container"
+                android:layout_below="@+id/trip_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/line_chunk_red"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/score_red"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="50"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/line_chunk_orange"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/line_chunk_orange"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:background="@color/score_orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="15"
+                    app:layout_constraintLeft_toRightOf="@+id/line_chunk_red"
+                    app:layout_constraintRight_toLeftOf="@+id/line_chunk_yellow" />
+
+                <TextView
+                    android:id="@+id/line_chunk_yellow"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:background="@color/score_yellow"
+                    app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="15"
+                    app:layout_constraintLeft_toRightOf="@+id/line_chunk_orange"
+                    app:layout_constraintRight_toLeftOf="@+id/line_chunk_green" />
+
+                <TextView
+                    android:id="@+id/line_chunk_green"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:background="@color/score_green"
+                    app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_weight="20"
+                    app:layout_constraintLeft_toRightOf="@+id/line_chunk_yellow"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/score_red"
+                    app:layout_constraintBottom_toTopOf="@+id/line_chunk_red"
+                    app:layout_constraintStart_toStartOf="@+id/line_chunk_red" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/score_orange"
+                    app:layout_constraintBottom_toTopOf="@+id/line_chunk_orange"
+                    app:layout_constraintStart_toStartOf="@+id/line_chunk_orange" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="65"
+                    android:textColor="@color/score_yellow"
+                    app:layout_constraintBottom_toTopOf="@+id/line_chunk_yellow"
+                    app:layout_constraintStart_toStartOf="@+id/line_chunk_yellow" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80"
+                    android:textColor="@color/score_green"
+                    app:layout_constraintBottom_toTopOf="@+id/line_chunk_green"
+                    app:layout_constraintStart_toStartOf="@+id/line_chunk_green" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textColor="@color/score_green"
+                    app:layout_constraintBottom_toTopOf="@+id/line_chunk_green"
+                    app:layout_constraintEnd_toEndOf="@+id/line_chunk_green" />
+
+                <TextView
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_finish_discount"
+                    app:layout_constraintStart_toStartOf="@+id/line_chunk_red"
+                    app:layout_constraintTop_toBottomOf="@+id/line_chunk_red" />
+
+                <TextView
+                    android:id="@+id/tv_finish_journey_scale_discount_20"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0%"
+                    app:layout_constraintEnd_toEndOf="@+id/line_chunk_red"
+                    app:layout_constraintTop_toBottomOf="@+id/line_chunk_red" />
+
+                <TextView
+                    android:id="@+id/tv_finish_journey_scale_discount_10"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5%"
+                    app:layout_constraintEnd_toEndOf="@+id/line_chunk_orange"
+                    app:layout_constraintTop_toBottomOf="@+id/line_chunk_orange" />
+
+                <TextView
+                    android:id="@+id/tv_finish_journey_scale_discount_5"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10%"
+                    app:layout_constraintEnd_toEndOf="@+id/line_chunk_yellow"
+                    app:layout_constraintTop_toBottomOf="@+id/line_chunk_yellow" />
+
+                <TextView
+                    android:id="@+id/tv_finish_journey_scale_discount_0"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20%"
+                    app:layout_constraintEnd_toEndOf="@+id/line_chunk_green"
+                    app:layout_constraintTop_toBottomOf="@+id/line_chunk_green" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/total_discount"
+                style="@style/textSubhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:layout_below="@+id/cl_receipt_score_bar_container"
+                android:text="@string/trip_finish_total_discount" />
+            <TextView
+                android:id="@+id/textTotalDiscount"
+                style="@style/textTitle"
+                android:textColor="@color/score_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/total_discount"
+                android:text="20%" />
+
+            <View
+                android:id="@+id/total_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/total_discount"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/textTotalDiscountPrice"
+                style="@style/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:layout_below="@+id/total_divider"
+                android:text="@string/total_discount_price" />
+
+            <TextView
+                android:id="@+id/discount_info"
+                style="@style/textCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/textTotalDiscountPrice"
+                android:text="@string/trip_finish_discount_info" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/nextTextInfo"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/card_info"
+        android:text="@string/trip_finish_success_next" />
+
+    <TextView
+        android:id="@+id/nextButton"
+        style="@style/TitleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nextTextInfo"
+        android:text="@string/next"
+        />
+
+</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
