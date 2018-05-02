@@ -1,22 +1,31 @@
 <resources>
     <string name="app_name">Kasko2go</string>
     <string name="ticker_text">Data on your driving style is being collected</string>
+
     <string name="error_title">Error</string>
-    <string name="error_unknown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna wirl aliqua. Up exlaborum incididunt.</string>
+    <string name="error_server_unknown">Error of server response. \n Try again.</string>
+    <string name="error_server_error">On error occurred while calculating your driving style. \n Try again.</string>
+    <string name="error_location_connect">Error of gps location service response. \n Try again.</string>
     <string name="error_price_is_empty">Car price is empty.</string>
     <string name="error_price_is_invalid">Car price is wrong value.</string>
+    <string name="error_not_telegram">Telegram app is not installed.</string>
+    <string name="error_low_gps">For an accurate calculation of you driving style, \n the GPS signal level should be more than 90%.</string>
+    <string name="error_trip_time">For an accurate calculation of you driving style, \n make at least a five-minute trip.</string>
 
     <string name="start_title">Safe drivers pay less with \n Kasko2go</string>
     <string name="start_Info">Check your driving style and \n  see how much you save</string>
     <string name="start_car_price_info">Enter your car value \n € 5 000 -  € 50 000</string>
 
     <string name="trip_title">Data on your driving style is being collected</string>
-    <string name="trip_info">Take a trip five to thirty minutes in duration\n\nAt the end of the trip, press Stop, and we will evaluate your driving style\n\nPosition your phone so that the GPS signal level is at least 90%</string>
+    <string name="trip_info">Take a trip five to thirty minutes in duration \n \n At the end of the trip, press Stop, and we will evaluate your driving style \n \n Position your phone so that the GPS signal level is at least 90%</string>
     <string name="gps_level_title">GPS</string>
     <string name="trip_timer_title">Trip</string>
 
-    <string name="trip_finish_success">Congratulations!\nYou are an excellent driver!</string>
     <string name="trip_finish_fail">Alas, your driving style  is not safe</string>
+    <string name="trip_finish_success_50">Not bed</string>
+    <string name="trip_finish_success_65">Congratulations! \n You have a good driving style!</string>
+    <string name="trip_finish_success_80">Congratulations! \n You are an excellent driver!</string>
+
     <string name="trip_finish_driving_style">Driving style</string>
     <string name="trip_finish_trip">Trip</string>
     <string name="trip_finish_travel_time">Traveling time</string>
@@ -24,12 +33,13 @@
     <string name="trip_finish_discount">Discount: (%)</string>
     <string name="trip_finish_total_discount">Discount</string>
     <string name="trip_finish_discount_info">The cost is an indication so that you can appreciate the possibility of savings</string>
-    <string name="trip_finish_success_next">Your driving style is more than 80, you  \nwill receive a reward</string>
-    <string name="trip_finish_fail_next">Travel to get 80 or more points in order \n to receive a reward</string>
 
-    <string name="reward_title">Three simple steps to receive  \na reward:</string>
+    <string name="trip_finish_success_next">Your driving style is more than 80, you \n will receive a reward</string>
+    <string name="trip_finish_fail_next">Travel to get 80 or more points in order \n  to receive a reward</string>
+
+    <string name="reward_title">Three simple steps to receive  \n a reward:</string>
     <string name="reward_step_1">1. Take a screenshot</string>
-    <string name="reward_step_23">2. Share our Telegram channel.\n\n3. Become a good driver and get €5 in ETH</string>
+    <string name="reward_step_23">2. Share our Telegram channel. \n \n3. Become a good driver and get €5 in ETH</string>
     <string name="reward_one_day">One day - one winner!</string>
     <string name="reward_join_telegram">Join Telegram</string>
     <string name="reward_take_another">Take another trip</string>

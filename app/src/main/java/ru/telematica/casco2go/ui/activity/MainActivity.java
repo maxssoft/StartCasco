@@ -41,6 +41,12 @@ public class MainActivity extends MainActivityView implements BaseView {
     }
 
     @Override
+    protected void onDestroy() {
+        presenter.releaseActivity();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         // Прячем клавиатуру, если тапнул по области за пределами EditText и текущий контрол в фокусе EditText
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -55,10 +61,14 @@ public class MainActivity extends MainActivityView implements BaseView {
 
     @Override
     public void showError(String message) {
+        //AlertDialog dialog = new AlertDialog.Builder(this, R.style.AppDialog)
         AlertDialog dialog = new AlertDialog.Builder(this, R.style.AppDialog)
                 .setTitle(R.string.error_title)
                 .setMessage(message)
                 .setCancelable(true)
+                .setPositiveButton(R.string.ok, (dialog1, which) -> {
+                    dialog1.dismiss();
+                })
                 .create();
         dialog.show();
     }

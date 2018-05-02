@@ -29,9 +29,9 @@ public class RetrofitProvider {
 
     private final static String HTTP_CACHE_DIR = "http.cache";
     private final static int CACHE_SIZE_BYTES = 1024 * 1024 * 2;
-    private final static String testUrl = "https://35.205.134.193/";
-    private final static String releaseUrl = "https://ua.kasko2go.com/";
-    private final static String baseUrl = releaseUrl;
+    private final static String testUrl = "http://35.205.134.193/";
+    private final static String releaseUrl = "https://ua.kasko2go.com/";  // debug_
+    public final static String baseUrl = testUrl;
 
     private Retrofit retrofit;
     private OkHttpClient httpClient;

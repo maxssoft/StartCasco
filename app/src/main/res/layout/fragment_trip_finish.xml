@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:text="@string/trip_finish_success"
+                android:text="@string/trip_finish_success_80"
                 android:textColor="@color/green" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:textSize="46sp" />
 
             <TextView
-                android:id="@+id/textDriveStyle"
+                android:id="@+id/driving_style"
                 style="@style/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginBottom="@dimen/small_margin"
-                android:layout_below="@+id/textDriveStyle"
+                android:layout_below="@+id/driving_style"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
 
@@ -152,7 +152,7 @@
             </RelativeLayout>
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/cl_receipt_score_bar_container"
+                android:id="@+id/scopeContainer"
                 android:layout_below="@+id/trip_info_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -206,6 +206,7 @@
                     style="@style/textCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="0"
                     android:textColor="@color/score_red"
                     app:layout_constraintBottom_toTopOf="@+id/line_chunk_red"
@@ -215,6 +216,7 @@
                     style="@style/textCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="50"
                     android:textColor="@color/score_orange"
                     app:layout_constraintBottom_toTopOf="@+id/line_chunk_orange"
@@ -224,6 +226,7 @@
                     style="@style/textCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="65"
                     android:textColor="@color/score_yellow"
                     app:layout_constraintBottom_toTopOf="@+id/line_chunk_yellow"
@@ -233,6 +236,7 @@
                     style="@style/textCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="80"
                     android:textColor="@color/score_green"
                     app:layout_constraintBottom_toTopOf="@+id/line_chunk_green"
@@ -242,6 +246,7 @@
                     style="@style/textCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:text="100"
                     android:textColor="@color/score_green"
                     app:layout_constraintBottom_toTopOf="@+id/line_chunk_green"
@@ -290,6 +295,15 @@
                     android:text="20%"
                     app:layout_constraintEnd_toEndOf="@+id/line_chunk_green"
                     app:layout_constraintTop_toBottomOf="@+id/line_chunk_green" />
+
+                <ImageView
+                    android:id="@+id/levelIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="0dp"
+                    android:layout_marginBottom="2dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/line_chunk_yellow"
+                    android:src="@drawable/triangle"/>
             </android.support.constraint.ConstraintLayout>
 
             <TextView
@@ -300,7 +314,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginBottom="@dimen/small_margin"
-                android:layout_below="@+id/cl_receipt_score_bar_container"
+                android:layout_below="@+id/scopeContainer"
                 android:text="@string/trip_finish_total_discount" />
             <TextView
                 android:id="@+id/textTotalDiscount"
@@ -320,7 +334,7 @@
                 android:background="@color/divider" />
 
             <TextView
-                android:id="@+id/textTotalDiscountPrice"
+                android:id="@+id/textTotalPrice"
                 style="@style/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -337,7 +351,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:layout_below="@+id/textTotalDiscountPrice"
+                android:layout_below="@+id/textTotalPrice"
                 android:text="@string/trip_finish_discount_info" />
 
         </RelativeLayout>

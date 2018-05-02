@@ -17,18 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 public abstract class BaseFragment extends Fragment implements BaseView {
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
     }

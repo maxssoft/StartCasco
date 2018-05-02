@@ -45,16 +45,17 @@
 
     <EditText
         android:id="@+id/carPriceEdit"
+        android:background="@drawable/round_text_border"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/carPriceInfo"
         android:layout_centerHorizontal="true"
-        android:background="@color/white"
         android:ems="10"
+        android:hint="5000"
         android:inputType="number"
         android:paddingHorizontal="32dp"
+        android:paddingVertical="4dp"
         android:singleLine="true"
-        android:text="5000"
         android:textAlignment="center"
         android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_headline" />
@@ -67,5 +68,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/large_block_margin"
         android:src="@drawable/ic_start_driving" />
+
+    <ImageView
+        android:id="@+id/progressImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/start_button"
+        android:layout_alignLeft="@+id/start_button"
+        android:layout_alignParentBottom="false"
+        android:layout_alignRight="@+id/start_button"
+        android:layout_alignTop="@+id/start_button"
+        android:layout_centerHorizontal="false"
+        android:layout_margin="36dp"
+        android:src="@drawable/ic_indicator"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

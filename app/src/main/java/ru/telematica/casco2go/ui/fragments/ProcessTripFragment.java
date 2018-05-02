@@ -2,13 +2,18 @@ package ru.telematica.casco2go.ui.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +37,10 @@ public class ProcessTripFragment extends BaseFragment {
 
     @BindView(R.id.finish_button)
     View finishButton;
+
+    @BindView(R.id.progressImage)
+    ImageView progressImage;
+
 
     private Handler handler = new Handler();
 
@@ -66,20 +75,33 @@ public class ProcessTripFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        handler.post(updateTripInfo);
+        startHandler();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        stopHandler();
+    }
+
+    private static final int UPDATE_INTERVAL = 1000;
+    private boolean handlerStopped = false;
+
+    private void startHandler(){
+        handlerStopped = false;
+        handler.post(updateTripInfo);
+    }
+
+    private void stopHandler(){
+        handlerStopped = true;
         handler.removeCallbacks(updateTripInfo);
     }
 
-    private static final int UPDATE_INTERVAL = 5000;
+
     private Runnable updateTripInfo = new Runnable() {
         @Override
         public void run() {
-            if (isDetached()){
+            if (isDetached() || handlerStopped){
                 return;
             }
 
@@ -87,13 +109,33 @@ public class ProcessTripFragment extends BaseFragment {
             gpsLevelText.setText(tripData.getGpsLevel() + "%");
             gpsLevelText.setTextColor(tripData.getGpsLevel() > 90 ? getResources().getColor(R.color.green) : getResources().getColor(R.color.error));
 
-            tripTimerText.setText(DateUtils.timerFormatter.format(tripData.getTripTime()));
+            Date timeDate = new Date(tripData.getTripTime());
+            String timeS = DateUtils.INSTANCE.getTimerFormatter().format(timeDate);
+            tripTimerText.setText(timeS);
+
+            if (tripData.getGpsLevel() < 80){
+                stopHandler();
+                EventBus.getDefault().post(new FirstScreenEvent());
+                EventBus.getDefault().post(new ErrorEvent(getString(R.string.error_low_gps), null));
+                return;
+            }
+
+            if (tripData.getTripTime() > ScoringService.Companion.getMAX_TRIP_TIME()){
+                stopHandler();
+                finishClick();
+                return;
+            }
 
             handler.postDelayed(updateTripInfo, UPDATE_INTERVAL);
         }
     };
 
     private void finishClick(){
+        stopHandler();
+
+        progressImage.setVisibility(View.VISIBLE);
+        Animations.startRotateAnimation(progressImage);
+
         EventBus.getDefault().post(new FinishTripEvent());
     }
 

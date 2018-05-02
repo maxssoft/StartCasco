@@ -36,9 +36,9 @@
     </style>
 
     <style name="AppDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorAccent">#2e7eff</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
-        <item name="android:background">@color/background</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="Divider">

@@ -1,27 +1,47 @@
 package ru.telematica.casco2go.service.http;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Url;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+import ru.telematica.casco2go.model.request.CreateTokenRequest;
+import ru.telematica.casco2go.model.response.CreateAccessTokenResponse;
+import ru.telematica.casco2go.model.response.FinishTripResponse;
+import ru.telematica.casco2go.model.response.StartTripResponse;
+import ru.telematica.casco2go.model.response.StatusResponse;
+
 /**
  * Created by m.sidorov on 22.02.2018.
  */
 
 public interface TelematicaApi {
 
-/*
-    @GET
-    Observable<InitResponse> init1(@Url String requestUrl);
+    @POST("api/users/signupscoringtest?silentMode=true")
+    Call<CreateAccessTokenResponse> createToken(@Body CreateTokenRequest request);
 
-    @GET
-    Call<InitResponse> init(@Url String requestUrl);
+    @GET("api/Common/GetStatus")
+    //Call<ResponseBody> getTimeZone(
+    Call<StatusResponse> getTimeZone(
+            @Header("Authorization") String authToken,
+            @Query("cityLat") double latitude,
+            @Query("cityLon") double longitude);
 
-    @GET
-    Call<SessionResponse> getSession(@Url String requestUrl);
+    @POST("api/Journey/Start?CityAccidentness=1&tariffMode=1&CityWeatherMark=1&")
+    Call<StartTripResponse> startTrip(
+            @Header("Authorization") String authToken,
+            @Query("CityLat") double latitude,
+            @Query("CityLon") double longtitude,
+            @Query("PlannedDurationSeconds") int maxDurationTrip,
+            @Query("TimeZone") String timeZone,
+            @Query("SessionID") long sessionId
+    );
 
-    @GET
-    Call<PlayerTrackInfo> getPlayerInfo(@Url String requestUrl);
-*/
+    @POST("api/Journey/Finish?ReducedDurationSeconds=0&Forced=true")
+    Call<FinishTripResponse> finishTrip(@Header("Authorization") String authToken);
+
 
 }
