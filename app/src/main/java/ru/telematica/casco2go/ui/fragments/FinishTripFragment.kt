@@ -126,7 +126,16 @@ class FinishTripFragment: BaseFragment() {
                     TripStatus.LEVEL50 -> R.string.trip_finish_success_50
                     TripStatus.LEVEL65 -> R.string.trip_finish_success_65
                     TripStatus.LEVEL80 -> R.string.trip_finish_success_80
-                    else -> R.string.trip_finish_fail
+                    else -> {
+                        if (tripData.tripTime < ScoringService.MIN_TRIP_TIME) {
+                            R.string.error_trip_time
+                        } else
+                        if (tripData.gpsLevel < 90) {
+                            R.string.error_low_gps
+                        } else {
+                            R.string.trip_finish_fail
+                        }
+                    }
                 })
         textLevel.setText("${tripData.scoringData.drivingLevel}");
         textStartTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(tripData.startTime))

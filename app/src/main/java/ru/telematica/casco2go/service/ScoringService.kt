@@ -121,10 +121,6 @@ class ScoringService : Service() {
             processErrorAndBreak(error = IllegalStateException("trip already finished"))
             return
         }
-        if (tripData.tripTime < MIN_TRIP_TIME) {
-            processErrorAndBreak(getString(R.string.error_trip_time))
-            return
-        }
 
         subscriptions.add(
                 App.instance.httpService.finishTrip()
@@ -144,6 +140,12 @@ class ScoringService : Service() {
                             drivingLevel = journey?.scorePercentKm.isNull(0f).toInt()
                             val cost = ((timeTripSec / 60) * getOneMinuteCost()).toFloat()
                             tripCost = cost - cost * getDiscount() / 100f
+
+                            // Обрабатываем граничные условия (мин.время поездки и минимальный ровень GPS)
+                            if ((timeTripSec * 1000 < MIN_TRIP_TIME) || (data.gpsLevel < 90)) {
+                                drivingLevel = 0
+                                tripCost = 0.0f
+                            }
                         }
 
                         stopService()

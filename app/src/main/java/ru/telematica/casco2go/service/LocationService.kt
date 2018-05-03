@@ -35,7 +35,7 @@ class LocationService(val context: Context) : GoogleApiClient.ConnectionCallback
     private var mFirstCallback: Boolean = false
     private var mLocationRequest: LocationRequest? = null
 
-    private val START_LOCATION_COUNT = 15 // В начале в течение 15 секунд искусственно завышаем показатели GPS
+    private val START_LOCATION_COUNT = 5 // В начале в течение 5 секунд искусственно завышаем показатели GPS
     private var locationCount: Int = START_LOCATION_COUNT
     private var startLocationTime: Long = 0
 
