@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/StartCasco.iml" filepath="$PROJECT_DIR$/.idea/StartCasco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StartCasco.iml" filepath="$PROJECT_DIR$/StartCasco.iml" />
+      <module fileurl="file://D:\Projects\StartCasco\.idea\StartCasco.iml" filepath="D:\Projects\StartCasco\.idea\StartCasco.iml" />
       <module fileurl="file://C:\Users\m.sidorov\Projects\StartCasco\StartCasco.iml" filepath="C:\Users\m.sidorov\Projects\StartCasco\StartCasco.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\m.sidorov\Projects\StartCasco\app\app.iml" filepath="C:\Users\m.sidorov\Projects\StartCasco\app\app.iml" />

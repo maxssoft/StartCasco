@@ -2,12 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/background"/>
+        android:drawable="@color/transparent"/>
 
     <item>
         <bitmap
-            android:gravity="center"
-            android:src="@drawable/ic_start_driving"/>
+            android:gravity="fill"
+            android:src="@drawable/splash_kasko_2_go"/>
     </item>
 
 </layer-list>
