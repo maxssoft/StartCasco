@@ -51,7 +51,6 @@
         android:layout_below="@+id/carPriceInfo"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="5000"
         android:inputType="number"
         android:paddingHorizontal="32dp"
         android:paddingVertical="4dp"

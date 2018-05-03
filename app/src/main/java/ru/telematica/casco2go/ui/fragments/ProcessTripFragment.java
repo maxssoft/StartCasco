@@ -68,7 +68,7 @@ public class ProcessTripFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         finishButton.setOnClickListener(v -> {
-            Animations.startPressedTripAnim(v, () -> finishClick());
+            finishClick();
         });
     }
 
@@ -113,13 +113,15 @@ public class ProcessTripFragment extends BaseFragment {
             String timeS = DateUtils.INSTANCE.getTimerFormatter().format(timeDate);
             tripTimerText.setText(timeS);
 
-            if (tripData.getGpsLevel() < 80){
+/*
+            if (tripData.getGpsLevel() < 90){
                 stopHandler();
                 EventBus.getDefault().post(new FirstScreenEvent());
                 EventBus.getDefault().post(new ErrorEvent(getString(R.string.error_low_gps), null));
                 return;
             }
 
+*/
             if (tripData.getTripTime() > ScoringService.Companion.getMAX_TRIP_TIME()){
                 stopHandler();
                 finishClick();
@@ -131,6 +133,10 @@ public class ProcessTripFragment extends BaseFragment {
     };
 
     private void finishClick(){
+        Animations.startPressedTripAnim(finishButton, () -> finishTrip());
+    }
+
+    private void finishTrip(){
         stopHandler();
 
         progressImage.setVisibility(View.VISIBLE);

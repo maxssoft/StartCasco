@@ -24,6 +24,7 @@ import ru.telematica.casco2go.R;
 import ru.telematica.casco2go.model.eventbus.StartTripEvent;
 import ru.telematica.casco2go.service.ScoringService;
 import ru.telematica.casco2go.utils.Animations;
+import ru.telematica.casco2go.utils.ConfigPreferences;
 import ru.telematica.casco2go.utils.Permissions;
 
 public class StartTripFragment extends BaseFragment {
@@ -61,8 +62,8 @@ public class StartTripFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        int carPrice = ScoringService.Companion.getTripData().getCarPrice();
-        if (carPrice != 5000) {
+        int carPrice = ConfigPreferences.INSTANCE.readCarPrice(getContext());
+        if (carPrice > 0){
             carPriceEdit.setText(String.valueOf(carPrice));
         }
 
@@ -95,12 +96,14 @@ public class StartTripFragment extends BaseFragment {
         }
 
         try {
-            int price = PriceValidator.validate(getContext(), carPriceEdit.getEditableText().toString());
+            int carPrice = PriceValidator.validate(getContext(), carPriceEdit.getEditableText().toString());
+
+            ConfigPreferences.INSTANCE.writeCarPrice(getContext(), carPrice);
 
             progressImage.setVisibility(View.VISIBLE);
             Animations.startRotateAnimation(progressImage);
 
-            EventBus.getDefault().post(new StartTripEvent(price));
+            EventBus.getDefault().post(new StartTripEvent(carPrice));
         } catch (Exception e){
             showError(e.getMessage());
         }
@@ -110,14 +113,18 @@ public class StartTripFragment extends BaseFragment {
 
         public static int validate(Context context, String value) throws Exception {
             if (value.isEmpty()){
-                return 5000;
-                //throw new Exception(context.getString(R.string.error_price_is_empty));
+                throw new Exception(context.getString(R.string.error_price_is_empty));
             }
+            int price = 0;
             try {
-                return Integer.parseInt(value.replace(" ", ""));
+                price = Integer.parseInt(value.replace(" ", ""));
             } catch (Exception e){
                 throw new Exception(context.getString(R.string.error_price_is_invalid));
             }
+            if (price < 5000){
+                throw new Exception(context.getString(R.string.error_price_is_low));
+            }
+            return price;
        }
     }
 
