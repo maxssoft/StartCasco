@@ -50,7 +50,7 @@ class FinishTripFragment: BaseFragment() {
     lateinit var textTotalDiscount: TextView
 
     @BindView(R.id.textTotalPrice)
-    lateinit var textTotalDiscountPrice: TextView
+    lateinit var textTotalPrice: TextView
 
     @BindView(R.id.nextTextInfo)
     lateinit var nextTextInfo: TextView
@@ -145,7 +145,7 @@ class FinishTripFragment: BaseFragment() {
         textTravelTime.setText(formatMinutes(tripData.scoringData.timeInTravelSec));
         textTrafficTime.setText(formatMinutes(tripData.scoringData.timeInTrafficSec));
         textTotalDiscount.setText("${tripData.scoringData.getDiscount()}%");
-        textTotalDiscountPrice.setText(getString(R.string.total_discount_price, tripData.scoringData.tripCost));
+        textTotalPrice.setText(getString(R.string.total_discount_price, tripData.scoringData.tripCost));
 
         updateScopeContainerIndicator(tripData.scoringData.drivingLevel)
     }
