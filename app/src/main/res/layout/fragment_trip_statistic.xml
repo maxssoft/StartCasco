@@ -131,22 +131,23 @@
             android:id="@+id/line_chunk_red"
             android:layout_width="0dp"
             android:layout_height="8dp"
-            android:layout_marginTop="32dp"
             android:background="@color/score_red"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="50"
+            android:layout_marginLeft="1px"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/line_chunk_orange"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toLeftOf="@+id/line_chunk_orange"/>
 
         <TextView
             android:id="@+id/line_chunk_orange"
             android:layout_width="0dp"
             android:layout_height="8dp"
             android:background="@color/score_orange"
-            app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="15"
+            app:layout_constraintTop_toTopOf="@+id/line_chunk_red"
             app:layout_constraintLeft_toRightOf="@+id/line_chunk_red"
             app:layout_constraintRight_toLeftOf="@+id/line_chunk_yellow" />
 
@@ -155,9 +156,9 @@
             android:layout_width="0dp"
             android:layout_height="8dp"
             android:background="@color/score_yellow"
-            app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="15"
+            app:layout_constraintTop_toTopOf="@+id/line_chunk_red"
             app:layout_constraintLeft_toRightOf="@+id/line_chunk_orange"
             app:layout_constraintRight_toLeftOf="@+id/line_chunk_green" />
 
@@ -166,9 +167,10 @@
             android:layout_width="0dp"
             android:layout_height="8dp"
             android:background="@color/score_green"
-            app:layout_constraintBottom_toBottomOf="@+id/line_chunk_red"
+            android:layout_marginRight="1px"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="20"
+            app:layout_constraintTop_toTopOf="@+id/line_chunk_red"
             app:layout_constraintLeft_toRightOf="@+id/line_chunk_yellow"
             app:layout_constraintRight_toRightOf="parent" />
 
