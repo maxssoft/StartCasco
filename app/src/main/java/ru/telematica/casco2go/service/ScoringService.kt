@@ -137,15 +137,14 @@ class ScoringService : Service() {
                             timeTripSec = journey?.duration.isNull(0)
                             timeInTrafficSec = journey?.trafficJamDuration.isNull(0)
                             timeInTravelSec = timeTripSec - timeInTrafficSec
-                            drivingLevel = journey?.scorePercentKm.isNull(0f).toInt()
-                            val cost = ((timeTripSec / 60) * getOneMinuteCost()).toFloat()
-                            tripCost = cost - cost * getDiscount() / 100f
-
                             // Обрабатываем граничные условия (мин.время поездки и минимальный ровень GPS)
                             if ((timeTripSec * 1000 < MIN_TRIP_TIME) || (data.gpsLevel < 90)) {
                                 drivingLevel = 0
-                                tripCost = 0.0f
+                            } else {
+                                drivingLevel = journey?.scorePercentKm.isNull(0f).toInt()
                             }
+                            val cost = ((timeTripSec / 60) * getOneMinuteCost()).toFloat()
+                            tripCost = cost - cost * getDiscount() / 100f
                         }
 
                         stopService()
