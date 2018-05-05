@@ -225,14 +225,6 @@ class ScoringService : Service() {
         )
     }
 
-    private fun scoreData() {
-        val data = getTripData()
-
-        if (data.gpsLevel < 90) {
-            processErrorAndBreak(getString(R.string.error_low_gps));
-        }
-    }
-
     @Synchronized
     private fun releaseService() {
         stopService()

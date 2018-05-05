@@ -12,7 +12,7 @@
 
     <style name="textNormal" parent="textBody1"/> <!-- Основной текст -->
     <style name="textMedium" parent="textNormal"> <!-- Основной жирный текст -->
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="textStrong" parent="textNormal"> <!-- Основной текст яркий-->

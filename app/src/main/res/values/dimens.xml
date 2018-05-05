@@ -15,6 +15,7 @@
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="block_margin">24dp</dimen> <!-- Разделитель между блоками -->
     <dimen name="large_block_margin">36dp</dimen> <!-- Разделитель между блоками -->
+    <dimen name="large_offset">56dp</dimen> <!-- Ьольшой отступ -->
 
     <!--sizes-->
     <dimen name="button_size">36dp</dimen>

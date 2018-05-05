@@ -78,9 +78,9 @@ class ScoringData(val carPrice: Int) {
 
     fun getDiscount(): Int{
         when(drivingLevel){
-            in 50..64 -> return 5
-            in 65..79 -> return 10
-            in 80..100 -> return 20
+            in 50..64 -> return 10
+            in 65..79 -> return 30
+            in 80..100 -> return 45
             else -> return 0
         }
     }
@@ -96,7 +96,8 @@ class ScoringData(val carPrice: Int) {
             in 35000..39999 -> return 0.026f
             in 40000..44999 -> return 0.028f
             in 45000..49999 -> return 0.029f
-            in 50000..99999999 -> return 0.030f
+            in 50000..149999 -> return (carPrice * 0.00006f) / 100f
+            in 150000..99999999 -> return (carPrice * 0.00006f) / 100f
             else -> return 0.0f
         }
     }
