@@ -14,16 +14,4 @@ class FinishTripResponse {
     @SerializedName("Journey")
     val journey: Journey? = null
 
-    inner class Journey {
-        @SerializedName("ID")
-        val id: String? = null
-        @SerializedName("ScorePercentTotal")
-        val scorePercentTotal: Float? = null
-        @SerializedName("ScorePercentKm")
-        val scorePercentKm: Float? = null
-        @SerializedName("Duration")
-        val duration: Int? = null
-        @SerializedName("TrafficJamDuration")
-        val trafficJamDuration: Int? = null
-    }
 }

@@ -29,7 +29,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MainActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/MainTheme"
+            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".service.ScoringService" />
 

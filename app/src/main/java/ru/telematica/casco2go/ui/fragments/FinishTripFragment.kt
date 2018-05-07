@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+
 import butterknife.BindView
 import butterknife.ButterKnife
 import org.greenrobot.eventbus.EventBus
+
 import ru.telematica.casco2go.R
 import ru.telematica.casco2go.model.eventbus.*
 import ru.telematica.casco2go.service.ScoringService
@@ -51,7 +53,7 @@ class FinishTripFragment: BaseFragment() {
         ButterKnife.bind(this, view!!)
 
         val tripData = ScoringService.getTripData()
-        val fragment = TripStatisticFragment.newInstance(tripData)
+        val fragment = TripStatisticFragment.newInstance(tripData.scoringData)
         childFragmentManager
                 .beginTransaction()
                 .replace(R.id.statistic_container, fragment, "statisticFragment")
@@ -69,23 +71,23 @@ class FinishTripFragment: BaseFragment() {
             else -> TripStatus.FAILED
         }
 
-        val tripFailed = tripData.scoringData.drivingLevel < 65;
+        val tripLevelLow = tripData.scoringData.drivingLevel <= 80;
 
-        if (tripFailed) {
+        if (tripLevelLow) {
             textTitle.setTextColor(resources.getColor(R.color.error))
 
-            nextTextInfo.setText(R.string.trip_finish_fail_next)
+            nextTextInfo.setText(R.string.trip_finish_next_info_80)
 
-            finishButton.setText(R.string.ok);
+            finishButton.setText(R.string.trip_finish_next_80);
             finishButton.setOnClickListener {
                 Animations.startPressedScaleAnim(finishButton) { finishClick() }
             }
         } else {
             textTitle.setTextColor(resources.getColor(R.color.green))
 
-            nextTextInfo.setText(R.string.trip_finish_success_next)
+            nextTextInfo.setText(R.string.trip_finish_next_info_100)
 
-            finishButton.setText(R.string.next);
+            finishButton.setText(R.string.trip_finish_next_100);
             finishButton.setOnClickListener {
                 Animations.startPressedScaleAnim(finishButton) { nextClick() }
             }
@@ -93,9 +95,9 @@ class FinishTripFragment: BaseFragment() {
 
         textTitle.setText(
                 when(tripStatus){
-                    TripStatus.LEVEL50 -> R.string.trip_finish_success_50
-                    TripStatus.LEVEL65 -> R.string.trip_finish_success_65
-                    TripStatus.LEVEL80 -> R.string.trip_finish_success_80
+                    TripStatus.LEVEL50 -> R.string.trip_finish_title_50
+                    TripStatus.LEVEL65 -> R.string.trip_finish_title_65
+                    TripStatus.LEVEL80 -> R.string.trip_finish_title_80
                     else -> {
                         if (tripData.tripTime < ScoringService.MIN_TRIP_TIME) {
                             R.string.error_trip_time
@@ -103,7 +105,7 @@ class FinishTripFragment: BaseFragment() {
                         if (tripData.gpsLevel < 90) {
                             R.string.error_low_gps
                         } else {
-                            R.string.trip_finish_fail
+                            R.string.trip_finish_title_0
                         }
                     }
                 })

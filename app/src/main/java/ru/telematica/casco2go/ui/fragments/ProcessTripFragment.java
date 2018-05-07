@@ -29,9 +29,6 @@ import ru.telematica.casco2go.utils.DateUtils;
 public class ProcessTripFragment extends BaseFragment {
 
 
-    @BindView(R.id.gpsLevelText)
-    TextView gpsLevelText;
-
     @BindView(R.id.tripTimerText)
     TextView tripTimerText;
 
@@ -106,8 +103,6 @@ public class ProcessTripFragment extends BaseFragment {
             }
 
             TripData tripData = ScoringService.getTripData();
-            gpsLevelText.setText(tripData.getGpsLevel() + "%");
-            gpsLevelText.setTextColor(tripData.getGpsLevel() > 90 ? getResources().getColor(R.color.green) : getResources().getColor(R.color.error));
 
             Date timeDate = new Date(tripData.getTripTime());
             String timeS = DateUtils.INSTANCE.getTimerFormatter().format(timeDate);

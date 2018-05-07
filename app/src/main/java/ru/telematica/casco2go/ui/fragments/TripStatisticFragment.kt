@@ -8,13 +8,9 @@ import android.view.ViewTreeObserver
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
-import org.greenrobot.eventbus.EventBus
 import ru.telematica.casco2go.R
+import ru.telematica.casco2go.model.ScoringData
 import ru.telematica.casco2go.model.TripData
-import ru.telematica.casco2go.model.eventbus.FirstScreenEvent
-import ru.telematica.casco2go.model.eventbus.OpenFragmentEvent
-import ru.telematica.casco2go.service.ScoringService
-import ru.telematica.casco2go.utils.Animations
 import ru.telematica.casco2go.utils.DateUtils
 import ru.telematica.casco2go.utils.JsonUtils
 import java.text.SimpleDateFormat
@@ -56,17 +52,23 @@ class TripStatisticFragment : BaseFragment() {
 
     companion object {
 
-        private val TRIP_DATA_PARAM = "trip_data.param"
+        val SCORING_DATA_PARAM = "scoring.data.param"
 
         @JvmStatic
-        fun newInstance(tripData: TripData): TripStatisticFragment {
-            val json = JsonUtils.toJson(tripData)
+        fun newInstance(scoringData: ScoringData): TripStatisticFragment {
+            val json = JsonUtils.toJson(scoringData)
             val bundle = Bundle()
-            bundle.putString(TRIP_DATA_PARAM, json)
+            bundle.putString(SCORING_DATA_PARAM, json)
+            return newInstance(bundle)
+        }
+
+        @JvmStatic
+        fun newInstance(bundle: Bundle): TripStatisticFragment {
             val fragment = TripStatisticFragment()
             fragment.arguments = bundle
             return fragment
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,15 +83,15 @@ class TripStatisticFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         ButterKnife.bind(this, view!!)
 
-        val tripDataJson = arguments.getString(TRIP_DATA_PARAM, "")
-        if (!tripDataJson.isBlank()){
-            val tripData = JsonUtils.parseJson(tripDataJson, TripData::class.java)
-            updateInfo(tripData)
+        val jsonData = arguments.getString(SCORING_DATA_PARAM, "")
+        if (!jsonData.isBlank()){
+            val data = JsonUtils.parseJson(jsonData, ScoringData::class.java)
+            updateInfo(data)
         }
     }
 
-    private fun updateInfo(tripData: TripData) {
-        val tripFailed = tripData.scoringData.drivingLevel < 65;
+    private fun updateInfo(data: ScoringData) {
+        val tripFailed = data.drivingLevel < 65
 
         if (tripFailed) {
             textLevel.setTextColor(resources.getColor(R.color.error))
@@ -99,17 +101,21 @@ class TripStatisticFragment : BaseFragment() {
             textTotalDiscount.setTextColor(resources.getColor(R.color.green))
         }
 
-        textLevel.setText("${tripData.scoringData.drivingLevel}");
-        textStartTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(tripData.startTime))
-        textEndTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(tripData.finishTime))
+        textLevel.setText("${data.drivingLevel}");
+        if (data.startTime != null) {
+            textStartTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(data.startTime))
+        }
+        if (data.finishTime != null) {
+            textEndTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(data.finishTime))
+        }
         val min = getString(R.string.minutes)
-        textTripTime.setText(formatMinutes(tripData.scoringData.timeTripSec))
-        textTravelTime.setText(formatMinutes(tripData.scoringData.timeInTravelSec));
-        textTrafficTime.setText(formatMinutes(tripData.scoringData.timeInTrafficSec));
-        textTotalDiscount.setText("${tripData.scoringData.getDiscount()}%");
-        textTotalPrice.setText(getString(R.string.total_discount_price, tripData.scoringData.tripCost));
+        textTripTime.setText(formatMinutes(data.timeTripSec))
+        textTravelTime.setText(formatMinutes(data.timeInTravelSec));
+        textTrafficTime.setText(formatMinutes(data.timeInTrafficSec));
+        textTotalDiscount.setText("${data.getDiscount()}%");
+        textTotalPrice.setText(getString(R.string.trip_finish_total_price, data.tripCost));
 
-        updateScopeContainerIndicator(tripData.scoringData.drivingLevel)
+        updateScopeContainerIndicator(data.drivingLevel)
     }
 
     private fun updateScopeContainerIndicator(drivingLevel: Int){

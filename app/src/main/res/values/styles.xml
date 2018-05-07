@@ -18,6 +18,10 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/photo_background</item>
+    </style>
+
     <style name="SplashThemeFullScreen" parent="SplashTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
@@ -50,6 +54,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
     </style>
+
+    <style name="ImageButton"> <!-- Квадратная кнопка с иконкой -->
+        <item name="android:layout_width">@dimen/button_size</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:padding">@dimen/button_padding</item>
+    </style>
+<!--
+<item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+-->
 
     <style name="TitleButton" parent="textButton"> <!-- Синяя кнопка с текстом-->
         <item name="android:layout_height">@dimen/button_size</item>

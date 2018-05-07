@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/standard_margin"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground" >
+
+    <View
+        android:id="@+id/indicator"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/dateTrip"
+        style="@style/textNormal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/standard_margin"
+        android:layout_marginVertical="@dimen/small_margin"
+        android:layout_toLeftOf="@+id/costTrip"
+        android:layout_toRightOf="@+id/indicator"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/costTrip"
+        style="@style/textMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/dateTrip"
+        android:background="@color/divider" />
+
+</RelativeLayout>
+
+
+
+

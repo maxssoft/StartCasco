@@ -11,8 +11,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -21,10 +19,10 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.telematica.casco2go.R;
+import ru.telematica.casco2go.model.eventbus.OpenFragmentEvent;
 import ru.telematica.casco2go.model.eventbus.StartTripEvent;
-import ru.telematica.casco2go.service.ScoringService;
 import ru.telematica.casco2go.utils.Animations;
-import ru.telematica.casco2go.utils.ConfigPreferences;
+import ru.telematica.casco2go.repository.ConfigRepository;
 import ru.telematica.casco2go.utils.Permissions;
 
 public class StartTripFragment extends BaseFragment {
@@ -38,6 +36,9 @@ public class StartTripFragment extends BaseFragment {
 
     @BindView(R.id.progressImage)
     ImageView progressImage;
+
+    @BindView(R.id.textHistory)
+    View historyButton;
 
     public StartTripFragment() {
         // Required empty public constructor
@@ -62,13 +63,17 @@ public class StartTripFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        int carPrice = ConfigPreferences.INSTANCE.readCarPrice(getContext());
+        int carPrice = ConfigRepository.INSTANCE.getCarPrice();
         if (carPrice > 0){
             carPriceEdit.setText(String.valueOf(carPrice));
         }
 
         startButton.setOnClickListener(v -> {
             Animations.startPressedTripAnim(v, () -> startClick());
+        });
+
+        historyButton.setOnClickListener(v -> {
+            Animations.startPressedScaleAnim(v, () -> startHistory());
         });
     }
 
@@ -98,15 +103,19 @@ public class StartTripFragment extends BaseFragment {
         try {
             int carPrice = PriceValidator.validate(getContext(), carPriceEdit.getEditableText().toString());
 
-            ConfigPreferences.INSTANCE.writeCarPrice(getContext(), carPrice);
+            ConfigRepository.INSTANCE.writeCarPrice(getContext(), carPrice);
 
             progressImage.setVisibility(View.VISIBLE);
             Animations.startRotateAnimation(progressImage);
 
-            EventBus.getDefault().post(new StartTripEvent(carPrice));
+            EventBus.getDefault().post(new StartTripEvent());
         } catch (Exception e){
-            showError(e.getMessage());
+            showError(e.getMessage(), null);
         }
+    }
+
+    private void startHistory(){
+        EventBus.getDefault().post(new OpenFragmentEvent(FragmentTypes.HISTORY_FRAGMENT, true, false));
     }
 
     private static class PriceValidator {

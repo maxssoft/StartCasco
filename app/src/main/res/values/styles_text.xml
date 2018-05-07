@@ -39,14 +39,21 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="textTitle"> <!-- Текст заголовока окна-->
+    <style name="textLargeTitle"> <!-- Крупный заголовок окна-->
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="textTitle" parent="textLargeTitle"> <!-- Текст заголовока окна-->
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_title</item>
     </style>
 
-    <style name="textSubhead" parent="textTitle"> <!-- Текст заголовока-->
+    <style name="textSubhead" parent="textLargeTitle"> <!-- Текст заголовока-->
         <item name="android:fontFamily">sans-serif</item>
     </style>
 

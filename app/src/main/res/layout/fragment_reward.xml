@@ -1,6 +1,7 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -25,7 +26,7 @@
 
             <TextView
                 android:id="@+id/textTitle"
-                style="@style/textTitle"
+                style="@style/textLargeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -57,7 +58,7 @@
 
             <TextView
                 android:id="@+id/text_drive_style"
-                style="@style/textTitle"
+                style="@style/textLargeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textLevel"

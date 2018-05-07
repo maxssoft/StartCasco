@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import butterknife.BindView
 import butterknife.ButterKnife
 
@@ -30,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
     lateinit var bottom_layout: ViewGroup
 
     private val handler: Handler = Handler()
+    private var animationStarted: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,17 +40,26 @@ class SplashActivity : AppCompatActivity() {
         ButterKnife.bind(this, this)
 
         rootLayout.setOnTouchListener(onTouchListener)
-
-        logoImage.animate().alpha(1f).setDuration(1500).start()
         logoImage.setOnTouchListener(onTouchListener)
-
-        textDescription.animate().alpha(1f).setDuration(1000).start()
+        textDescription.setOnTouchListener(onTouchListener)
         textDescription.setOnTouchListener(onTouchListener)
 
-        textContinue.animate().alpha(1f).setDuration(3000).start()
-        textDescription.setOnTouchListener(onTouchListener)
+        if (!animationStarted) {
+            startAnimations()
+        }
 
         handler.postDelayed(Runnable { startNextActivity() }, 10000)
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+    private fun startAnimations(){
+        animationStarted = true
+
+        logoImage.animate().alpha(1f).setInterpolator(DecelerateInterpolator()).setDuration(3000).start()
+        textDescription.animate().alpha(1f).setInterpolator(AccelerateInterpolator()).setDuration(1500).start()
+        textContinue.animate().alpha(1f).setInterpolator(AccelerateInterpolator()).setDuration(600).setStartDelay(3000).start()
     }
 
     val onTouchListener: View.OnTouchListener = View.OnTouchListener { v, event -> startNextActivity() }

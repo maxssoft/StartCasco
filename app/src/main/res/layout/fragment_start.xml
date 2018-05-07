@@ -2,23 +2,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <TextView
         android:id="@+id/textTitle"
-        style="@style/textTitle"
+        style="@style/textLargeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/large_block_margin"
+        android:textColor="@color/text_primary_w"
         android:gravity="center_horizontal"
         android:text="@string/start_title" />
 
     <TextView
         android:id="@+id/startInfo"
-        style="@style/textNormal"
+        style="@style/textMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textTitle"
@@ -26,6 +28,7 @@
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/block_margin"
+        android:textColor="@color/text_secondary_w"
         android:gravity="center_horizontal"
         android:text="@string/start_Info" />
 
@@ -40,6 +43,7 @@
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/large_block_margin"
+        android:textColor="@color/text_primary_w"
         android:gravity="center_horizontal"
         android:text="@string/start_car_price_info" />
 
@@ -56,8 +60,8 @@
         android:paddingVertical="4dp"
         android:singleLine="true"
         android:textAlignment="center"
-        android:textColor="@color/text_secondary"
-        android:textSize="@dimen/text_headline" />
+        android:textColor="@color/text_primary_w"
+        android:textSize="36sp" />
 
     <ImageView
         android:id="@+id/start_button"
@@ -65,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/large_block_margin"
+        android:layout_marginBottom="@dimen/trip_button_offset"
         android:src="@drawable/ic_start_driving" />
 
     <ImageView
@@ -74,12 +78,32 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/start_button"
         android:layout_alignLeft="@+id/start_button"
-        android:layout_alignParentBottom="false"
         android:layout_alignRight="@+id/start_button"
         android:layout_alignTop="@+id/start_button"
-        android:layout_centerHorizontal="false"
         android:layout_margin="36dp"
         android:src="@drawable/ic_indicator"
         android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/textHistory"
+        style="@style/textMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:text="@string/start_history"
+        android:textColor="@color/text_primary_w" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textHistory"
+        android:layout_alignTop="@+id/textHistory"
+        android:layout_toRightOf="@+id/textHistory"
+        android:layout_marginLeft="4dp"
+        app:srcCompat="@drawable/ic_arrow_forward_16dp" />
 
 </RelativeLayout>

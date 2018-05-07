@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@drawable/photo_background"
+    app:contentInsetStart="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/backButtonLayout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/backButton"
+                style="@style/ImageButton"
+                app:srcCompat="@drawable/ic_back_white"
+                android:visibility="visible" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/textTitle"
+            android:textColor="@color/text_primary_w"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_toRightOf="@id/backButtonLayout"
+            android:layout_toLeftOf="@id/rightButtonLayout"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <FrameLayout
+            android:id="@+id/rightButtonLayout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </FrameLayout>
+        <ImageView
+            android:id="@+id/rightButton"
+            style="@style/ImageButton"
+            app:srcCompat="@drawable/ic_search"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>
+
+
+
+

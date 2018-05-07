@@ -2,8 +2,9 @@
 <resources>
 
     <!--Text sizes-->
-    <dimen name="text_headline">30sp</dimen>
-    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_headline">46sp</dimen>
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_title">20sp</dimen>
     <dimen name="text_subhead">16sp</dimen>
     <dimen name="text_body">15sp</dimen>
     <dimen name="text_caption">12sp</dimen>
@@ -16,6 +17,7 @@
     <dimen name="block_margin">24dp</dimen> <!-- Разделитель между блоками -->
     <dimen name="large_block_margin">36dp</dimen> <!-- Разделитель между блоками -->
     <dimen name="large_offset">56dp</dimen> <!-- Ьольшой отступ -->
+    <dimen name="trip_button_offset">56dp</dimen> <!-- отступ большой круглой кнопки-->
 
     <!--sizes-->
     <dimen name="button_size">36dp</dimen>

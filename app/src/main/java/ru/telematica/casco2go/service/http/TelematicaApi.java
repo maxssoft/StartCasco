@@ -9,8 +9,10 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import ru.telematica.casco2go.model.request.CreateTokenRequest;
+import ru.telematica.casco2go.model.request.RefreshTokenRequest;
 import ru.telematica.casco2go.model.response.CreateAccessTokenResponse;
 import ru.telematica.casco2go.model.response.FinishTripResponse;
+import ru.telematica.casco2go.model.response.HistoryResponse;
 import ru.telematica.casco2go.model.response.StartTripResponse;
 import ru.telematica.casco2go.model.response.StatusResponse;
 
@@ -23,8 +25,10 @@ public interface TelematicaApi {
     @POST("api/users/signupscoringtest?silentMode=true")
     Call<CreateAccessTokenResponse> createToken(@Body CreateTokenRequest request);
 
+    @POST("api/users/signupscoringtest?silentMode=true")
+    Call<CreateAccessTokenResponse> refreshToken(@Body RefreshTokenRequest request);
+
     @GET("api/Common/GetStatus")
-    //Call<ResponseBody> getTimeZone(
     Call<StatusResponse> getTimeZone(
             @Header("Authorization") String authToken,
             @Query("cityLat") double latitude,
@@ -42,6 +46,12 @@ public interface TelematicaApi {
 
     @POST("api/Journey/Finish?ReducedDurationSeconds=0&Forced=true")
     Call<FinishTripResponse> finishTrip(@Header("Authorization") String authToken);
+
+    @GET("api/Journey")
+    //Call<ResponseBody> loadHistory(
+    Call<HistoryResponse> loadHistory(
+            @Header("Authorization") String authToken,
+            @Query("UTCTo") String time);
 
 
 }

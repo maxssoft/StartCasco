@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/driving_style"
-        style="@style/textTitle"
+        style="@style/textLargeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textLevel"
@@ -290,7 +290,7 @@
         android:text="@string/trip_finish_total_discount" />
     <TextView
         android:id="@+id/textTotalDiscount"
-        style="@style/textTitle"
+        style="@style/textLargeTitle"
         android:textColor="@color/score_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -307,13 +307,13 @@
 
     <TextView
         android:id="@+id/textTotalPrice"
-        style="@style/textTitle"
+        style="@style/textLargeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginBottom="@dimen/small_margin"
         android:layout_below="@+id/total_divider"
-        android:text="@string/total_discount_price" />
+        android:text="@string/trip_finish_total_price" />
 
 </RelativeLayout>

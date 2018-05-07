@@ -101,6 +101,7 @@ public class RetrofitProvider {
         builder.followRedirects(false);
         builder.connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS);
+        builder.authenticator(new AuthenticationInterceptor());
 
         httpClient = builder.build();
         return httpClient;

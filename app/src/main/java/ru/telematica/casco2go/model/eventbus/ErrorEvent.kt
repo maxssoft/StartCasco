@@ -10,12 +10,4 @@ class ErrorEvent(val message: String, val error: Throwable?) {
     constructor(message: String) : this(message, error = null)
     constructor(error: Throwable) : this(message = "", error = error)
 
-    fun getErrorMessage(): String {
-        if (message.isBlank()){
-            return error.isNull { Exception("") }.message.isNull { "" }
-        } else {
-            return message
-        }
-    }
-
 }

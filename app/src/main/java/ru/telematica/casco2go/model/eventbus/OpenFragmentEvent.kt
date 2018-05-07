@@ -9,4 +9,8 @@ class OpenFragmentEvent(val fragmentType: FragmentTypes,
                         val addToBackStack: Boolean = false,
                         val clearBackStack: Boolean = false) {
 
+    var data: Any? = null
+
+    constructor(fragmentType: FragmentTypes): this(fragmentType, false, false)
+
 }

@@ -60,8 +60,12 @@ public class MainActivity extends MainActivityView implements BaseView {
     }
 
     @Override
-    public void showError(String message) {
+    public void showError(String message, Throwable error) {
         //AlertDialog dialog = new AlertDialog.Builder(this, R.style.AppDialog)
+        if (error != null && error.getMessage() != null && !error.getMessage().isEmpty()){
+            message = message + "\n\n" + error.getMessage();
+        }
+
         AlertDialog dialog = new AlertDialog.Builder(this, R.style.AppDialog)
                 .setTitle(R.string.error_title)
                 .setMessage(message)

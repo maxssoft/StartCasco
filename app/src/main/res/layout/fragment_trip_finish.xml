@@ -1,6 +1,7 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:text="@string/trip_finish_success_80"
+                android:text="@string/trip_finish_title_80"
                 android:textColor="@color/green" />
 
             <FrameLayout
@@ -63,7 +64,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:layout_below="@+id/card_info"
-        android:text="@string/trip_finish_success_next" />
+        android:text="@string/trip_finish_next_info_100" />
 
     <TextView
         android:id="@+id/nextButton"
@@ -71,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nextTextInfo"
-        android:text="@string/next"
+        android:text="@string/trip_finish_next_100"
         />
 
 </RelativeLayout>

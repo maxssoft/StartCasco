@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/large_block_margin"
         android:gravity="center_horizontal"
         android:text="@string/splash_description"
-        android:textColor="@color/white" />
+        android:textColor="@color/text_secondary_w" />
 
     <RelativeLayout
         android:id="@+id/bottom_layout"

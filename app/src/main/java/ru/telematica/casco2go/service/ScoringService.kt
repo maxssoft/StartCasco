@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import io.reactivex.Single
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,7 +22,6 @@ import ru.telematica.casco2go.model.eventbus.LocationConnectedEvent
 import ru.telematica.casco2go.model.eventbus.OpenFragmentEvent
 import ru.telematica.casco2go.ui.activity.MainActivity
 import ru.telematica.casco2go.ui.fragments.FragmentTypes
-import ru.telematica.casco2go.utils.getErrorMessage
 import ru.telematica.casco2go.utils.isNull
 
 /**
@@ -50,10 +50,8 @@ class ScoringService : Service() {
         val MIN_TRIP_TIME: Long = 5 * 60 * 1000
         val MAX_TRIP_TIME: Int = 30 * 60 * 1000
 
-        val EXTRA_CAR_PRICE = "trip.start.car_price"
-
         @JvmStatic
-        private var _tripData: TripData = TripData(5000)
+        private var _tripData: TripData = TripData()
 
         @JvmStatic
         @Synchronized
@@ -69,6 +67,9 @@ class ScoringService : Service() {
 
         @JvmStatic
         val authData: AuthData = AuthData()
+
+        @JvmStatic
+        private var timeZone: String = ""
     }
 
     private lateinit var locationService: LocationService
@@ -88,8 +89,7 @@ class ScoringService : Service() {
             when (action) {
                 ACTION_CLEAR_TRIP -> clearScoring()
                 ACTION_START_TRIP -> {
-                    val carPrice = intent.getIntExtra(EXTRA_CAR_PRICE, 5000)
-                    startScoring(TripData(carPrice))
+                    startScoring()
                 }
                 ACTION_STOP_TRIP -> stopScoring()
                 ACTION_RELEASE -> releaseService()
@@ -98,7 +98,7 @@ class ScoringService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    private fun startScoring(newTrip: TripData) {
+    private fun startScoring() {
         disposeSubscriptions()
 
         if (!foregroundStarted) {
@@ -107,18 +107,18 @@ class ScoringService : Service() {
         }
 
         EventBus.getDefault().register(this)
+        setTripData(TripData())
         locationService.open()
-        setTripData(newTrip)
     }
 
     private fun stopScoring() {
         val tripData = getTripData()
         if (!tripData.started) {
-            processErrorAndBreak(error = IllegalStateException("trip has not been started"))
+            processErrorAndBreak("trip has not been started")
             return
         }
         if (tripData.finished) {
-            processErrorAndBreak(error = IllegalStateException("trip already finished"))
+            processErrorAndBreak("trip already finished")
             return
         }
 
@@ -127,30 +127,16 @@ class ScoringService : Service() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if (it.code != 1){
-                        processErrorAndBreak(getString(R.string.error_server_unknown))
-                    } else {
-                        val journey = it.journey
-                        val data = getTripData()
-                        data.finish()
-                        data.scoringData.apply {
-                            timeTripSec = journey?.duration.isNull(0)
-                            timeInTrafficSec = journey?.trafficJamDuration.isNull(0)
-                            timeInTravelSec = timeTripSec - timeInTrafficSec
-                            // Обрабатываем граничные условия (мин.время поездки и минимальный ровень GPS)
-                            if ((timeTripSec * 1000 < MIN_TRIP_TIME) || (data.gpsLevel < 90)) {
-                                drivingLevel = 0
-                            } else {
-                                drivingLevel = journey?.scorePercentKm.isNull(0f).toInt()
-                            }
-                            val cost = ((timeTripSec / 60) * getOneMinuteCost()).toFloat()
-                            tripCost = cost - cost * getDiscount() / 100f
-                        }
-
-                        stopService()
-                        EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.FINISH_TRIP_FRAGMENT))
+                    val data = getTripData()
+                    // Обрабатываем граничные условия (минимальный ровень GPS)
+                    if (data.gpsLevel < 90) {
+                        it.drivingLevel = 0
                     }
-                }, { processErrorAndBreak(getString(R.string.error_server_unknown))})
+                    data.finish(it)
+
+                    stopService()
+                    EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.FINISH_TRIP_FRAGMENT))
+                }, { processErrorAndBreak(getString(R.string.error_server_unknown), it)})
         )
     }
 
@@ -167,9 +153,9 @@ class ScoringService : Service() {
                 })
     }
 
-    private fun processErrorAndBreak(message: String = "", error: Throwable? = null) {
+    private fun processErrorAndBreak(message: String, error: Throwable? = null) {
         clearScoring()
-        EventBus.getDefault().post(ErrorEvent(message + "\n" + error.getErrorMessage(), error))
+        EventBus.getDefault().post(ErrorEvent(message, error))
     }
 
     @Synchronized
@@ -189,35 +175,20 @@ class ScoringService : Service() {
 
         val location = connectedEvent.location
         subscriptions.add(
-                Single.just(authData)
-                        .map {
-                            if (!it.hasAuth()) {
-                                val response = App.instance.httpService.createAccessToken()
-                                authData.apply {
-                                    sessionID = response?.session.isNull(0)
-                                    token = response?.accesstoken?.access_token.isNull("")
-                                    userId = response?.accesstoken?.user_id_long.isNull(0)
-
-                                    TimeZone = App.instance.httpService.getTimeZone(location.latitude, location.longitude)?.timeZone.isNull("")
-                                }
-                            } else {
-                                authData
+                Completable
+                        .fromAction {
+                            if (timeZone.isBlank()) {
+                                timeZone = App.instance.httpService.getTimeZone(location.latitude, location.longitude)
                             }
                         }
-                        .flatMap {
-                            App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME, authData.TimeZone, authData.sessionID)
-                        }
+                        .andThen( App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME, timeZone, authData.sessionID) )
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            if (it.code != 1){
-                                processErrorAndBreak(getString(R.string.error_server_unknown))
-                            } else {
-                                getTripData().start()
-                                locationService.start(getTripData())
-                                scoringStarted = true
-                                EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.PROCESS_TRIP_FRAGMENT))
-                            }
+                            getTripData().start()
+                            locationService.start(getTripData())
+                            scoringStarted = true
+                            EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.PROCESS_TRIP_FRAGMENT))
                         }, {
                             processErrorAndBreak(getString(R.string.error_server_unknown), it)
                         })

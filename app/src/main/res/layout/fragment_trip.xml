@@ -6,19 +6,20 @@
 
     <TextView
         android:id="@+id/textTitle"
-        style="@style/textTitle"
+        style="@style/textLargeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/large_block_margin"
+        android:textColor="@color/text_primary_w"
         android:gravity="center_horizontal"
         android:text="@string/trip_title" />
 
     <TextView
         android:id="@+id/startInfo"
-        style="@style/textNormal"
+        style="@style/textMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textTitle"
@@ -26,6 +27,7 @@
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/block_margin"
+        android:textColor="@color/text_secondary_w"
         android:gravity="center_horizontal"
         android:text="@string/trip_info" />
 
@@ -44,34 +46,12 @@
             android:layout_weight="0.5">
 
             <TextView
-                android:id="@+id/gpsLevelText"
-                style="@style/textHeadline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="98%"
-                android:textColor="@color/green" />
-
-            <TextView
-                style="@style/textCaption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/gpsLevelText"
-                android:layout_centerHorizontal="true"
-                android:text="@string/gps_level_title" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5">
-
-            <TextView
                 android:id="@+id/tripTimerText"
                 style="@style/textHeadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/text_primary_w"
                 android:text="12:23" />
 
             <TextView
@@ -80,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tripTimerText"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/text_secondary_w"
                 android:text="@string/trip_timer_title" />
         </RelativeLayout>
 
@@ -91,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/large_block_margin"
+        android:layout_marginBottom="@dimen/trip_button_offset"
         android:src="@drawable/ic_stop_driving" />
 
     <ImageView
@@ -100,10 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/finish_button"
         android:layout_alignLeft="@+id/finish_button"
-        android:layout_alignParentBottom="false"
         android:layout_alignRight="@+id/finish_button"
         android:layout_alignTop="@+id/finish_button"
-        android:layout_centerHorizontal="false"
         android:layout_margin="36dp"
         android:src="@drawable/ic_indicator"
         android:visibility="invisible"/>

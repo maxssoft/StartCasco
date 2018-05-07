@@ -8,8 +8,8 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         minSdkVersion 16
         applicationId "ru.telematica.Kasko2Go"
-        versionCode 20
-        versionName "1.0.1." + versionCode
+        versionCode 22
+        versionName "1.1.1." + versionCode
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }

@@ -8,9 +8,25 @@ class AuthData {
     var userId: Long = 0
     var sessionID: Long = 0
     var token: String = ""
-    var TimeZone: String = ""
+    var refreshToken: Int = 0
+    var expiredDate: Long = 0
+
+    fun getAuthHeader(): String {
+        return "Bearer " + token
+    }
+
+    fun isExpired(): Boolean{
+        return !token.isBlank() && System.currentTimeMillis() >= expiredDate - AuthDataConst.EXPIRE_OFFSET
+    }
 
     fun hasAuth(): Boolean{
-        return sessionID > 0
+        return !token.isBlank()
     }
+
+}
+
+object AuthDataConst {
+    private val ONE_HOUR: Long = 60 * 60 * 1000
+    val MIN_EXPIRE_PERIOD: Long = 2 * ONE_HOUR
+    val EXPIRE_OFFSET = ONE_HOUR
 }

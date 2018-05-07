@@ -1,6 +1,7 @@
 package ru.telematica.casco2go
 
 import android.support.v7.app.AppCompatDelegate
+import ru.telematica.casco2go.repository.ConfigRepository
 import ru.telematica.casco2go.service.http.HttpService
 import ru.telematica.casco2go.service.http.RetrofitProvider
 
@@ -10,6 +11,9 @@ import ru.telematica.casco2go.service.http.RetrofitProvider
 class App : android.support.multidex.MultiDexApplication() {
 
     companion object {
+
+        val HISTORY_PAGE_SIZE = 20
+
         @JvmStatic
         lateinit var instance: App
             private set
@@ -29,6 +33,7 @@ class App : android.support.multidex.MultiDexApplication() {
 
     private fun initInstance() {
         instance = this
+        ConfigRepository.read(this)
         httpService = createHttpService()
     }
 

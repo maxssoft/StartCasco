@@ -6,10 +6,12 @@ import android.support.v4.app.FragmentManager
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import ru.telematica.casco2go.R
+import ru.telematica.casco2go.model.ScoringData
 import ru.telematica.casco2go.model.eventbus.*
 import ru.telematica.casco2go.service.ScoringService
 import ru.telematica.casco2go.ui.base.MainActivityView
 import ru.telematica.casco2go.ui.fragments.*
+import java.security.InvalidParameterException
 
 /**
  * Created by m.sidorov on 29.04.2018.
@@ -81,6 +83,19 @@ class MainPresenter {
                 fragment = RewardsFragment.newInstance()
                 fragTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
             }
+            FragmentTypes.HISTORY_FRAGMENT -> {
+                fragment = HistoryFragment.newInstance()
+                fragTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+            }
+            FragmentTypes.SCORING_FRAGMENT -> {
+                if (openFragmentEvent.data is ScoringData) {
+                    val dataScoring = openFragmentEvent.data as ScoringData
+                    fragment = ScoringFragment.newInstance(dataScoring)
+                    fragTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                } else {
+                    throw InvalidParameterException("Open fragment [data] may be is " + ScoringData::class.java.simpleName)
+                }
+            }
             else -> throw IllegalArgumentException(String.format("Unknown fragment type [%s]", openFragmentEvent.fragmentType.name))
         }
         /*
@@ -99,6 +114,8 @@ class MainPresenter {
         // при показе нового фрагмента всегда скрываем клавиатуру
         _activity.hideKeyboard()
 
+        fragTransaction.replace(R.id.fragment_container, fragment, null)
+
         if (openFragmentEvent.addToBackStack) {
             fragTransaction.addToBackStack(null)
         }
@@ -106,14 +123,13 @@ class MainPresenter {
             fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
 
-        fragTransaction.replace(R.id.fragment_container, fragment, "tag")
         fragTransaction.commit()
         currentFragmentType = openFragmentEvent.fragmentType
     }
 
     @Subscribe
     fun onEvent(event: ErrorEvent) {
-        activity?.showError(event.getErrorMessage())
+        activity?.showError(event.message, event.error)
     }
 
     @Subscribe
@@ -127,7 +143,6 @@ class MainPresenter {
     fun onEvent(event: StartTripEvent) {
         val intent = Intent(activity, ScoringService::class.java)
         intent.action = ScoringService.ACTION_START_TRIP
-        intent.putExtra(ScoringService.EXTRA_CAR_PRICE, event.carPrice)
         activity?.startService(intent)
     }
 

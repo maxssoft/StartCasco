@@ -22,12 +22,12 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void showError(String message) {
+    public void showError(String message, Throwable error) {
         if (getActivity() == null) {
             return;
         }
         if (getActivity() instanceof BaseView){
-            ((BaseView) getActivity()).showError(message);
+            ((BaseView) getActivity()).showError(message, error);
         } else {
             Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         }
