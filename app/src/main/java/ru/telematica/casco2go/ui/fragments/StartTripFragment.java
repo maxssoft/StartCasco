@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.telematica.casco2go.R;
+import ru.telematica.casco2go.model.eventbus.KeyboardShowEvent;
 import ru.telematica.casco2go.model.eventbus.OpenFragmentEvent;
 import ru.telematica.casco2go.model.eventbus.StartTripEvent;
 import ru.telematica.casco2go.utils.Animations;
@@ -33,6 +35,9 @@ public class StartTripFragment extends BaseFragment {
 
     @BindView(R.id.start_button)
     View startButton;
+
+    @BindView(R.id.bottom_layout)
+    View bottomLayout;
 
     @BindView(R.id.progressImage)
     ImageView progressImage;
@@ -75,6 +80,27 @@ public class StartTripFragment extends BaseFragment {
         historyButton.setOnClickListener(v -> {
             Animations.startPressedScaleAnim(v, () -> startHistory());
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    @Subscribe
+    public void onEvent(KeyboardShowEvent event) {
+        if (event.getVisible()){
+            bottomLayout.setVisibility(View.GONE);
+        } else {
+            bottomLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void startClick(){

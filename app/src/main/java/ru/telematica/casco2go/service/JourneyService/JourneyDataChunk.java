@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.UUID;
 
+import ru.telematica.casco2go.repository.ConfigRepository;
 import ru.telematica.casco2go.service.ScoringService;
 
 /**
@@ -47,7 +48,7 @@ public final class JourneyDataChunk {
     private JourneyDataChunk(@JsonProperty("type") Type type) {
         this.type = type;
         this.uuid = UUID.randomUUID().toString();
-        this.user_id = String.valueOf(ScoringService.getAuthData().getUserId());
+        this.user_id = String.valueOf(ConfigRepository.INSTANCE.getAuthData().getUserId());
     }
 
     public static JourneyDataChunk id() {
@@ -86,6 +87,10 @@ public final class JourneyDataChunk {
     @Override
     public String toString() {
         return String.format(Locale.getDefault(), "{type=%s; ts=%d}", type, timestamp);
+    }
+
+    public String toText() {
+        return toString() + String.format(" latitude=%d; longitude=%d", lat, lon);
     }
 
     @Nullable

@@ -66,9 +66,6 @@ class ScoringService : Service() {
         }
 
         @JvmStatic
-        val authData: AuthData = AuthData()
-
-        @JvmStatic
         private var timeZone: String = ""
     }
 
@@ -145,9 +142,11 @@ class ScoringService : Service() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    setTripData(TripData())
                     stopService()
                     EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.START_TRIP_FRAGMENT))
                 }, {
+                    setTripData(TripData())
                     stopService()
                     EventBus.getDefault().post(OpenFragmentEvent(FragmentTypes.START_TRIP_FRAGMENT))
                 })
@@ -181,7 +180,7 @@ class ScoringService : Service() {
                                 timeZone = App.instance.httpService.getTimeZone(location.latitude, location.longitude)
                             }
                         }
-                        .andThen( App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME_SEC, timeZone, authData.sessionID) )
+                        .andThen( App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME_SEC, timeZone) )
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({

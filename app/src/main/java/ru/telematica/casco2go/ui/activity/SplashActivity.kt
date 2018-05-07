@@ -66,8 +66,11 @@ class SplashActivity : AppCompatActivity() {
 
     fun startNextActivity(): Boolean {
         handler.removeCallbacksAndMessages(null)
-        startActivity(Intent(this, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY))
         finish()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        startActivity(intent)
         return true
     }
 

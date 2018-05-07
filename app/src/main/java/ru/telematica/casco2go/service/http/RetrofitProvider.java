@@ -33,6 +33,9 @@ public class RetrofitProvider {
     private final static String releaseUrl = "https://ua.kasko2go.com/";  // debug_
     public final static String baseUrl = testUrl;
 
+    public final static String scroingTcpHost = "35.205.193.18";
+    public final static int scroingTcpPort = 50000;
+
     private Retrofit retrofit;
     private OkHttpClient httpClient;
 

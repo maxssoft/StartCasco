@@ -81,7 +81,7 @@ public class TcpClientAsync extends AsyncTask {
                 }
 
             } catch (Exception e) {
-                Log.e(TAG, "", e);
+                Log.e(TAG, "socket error", e);
                 TcpClientAsync.this.closeSocket();
                 if (mRun) {
                     i.onException(e);

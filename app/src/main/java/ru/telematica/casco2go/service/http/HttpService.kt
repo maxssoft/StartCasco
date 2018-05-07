@@ -64,9 +64,9 @@ class HttpService(val apiService: TelematicaApi) {
         return timeZone
     }
 
-    fun startTrip(latitude: Double, longtitude: Double, maxDuraton: Int, timeZone: String, sessionId: Long): Single<StartTripResponse> {
+    fun startTrip(latitude: Double, longtitude: Double, maxDuraton: Int, timeZone: String): Single<StartTripResponse> {
         return Single.fromCallable {
-            val response = apiService.startTrip(getAuthHeader(), latitude, longtitude, maxDuraton, timeZone, sessionId).execute()
+            val response = apiService.startTrip(getAuthHeader(), latitude, longtitude, maxDuraton, timeZone, ConfigRepository.authData.sessionID).execute()
             if (!response.isSuccessful || response.body() == null || response.body()?.code != 1) {
                 if (response.body() != null && response.body()?.code != 1) {
                     Log.e(TAG, "error of startTrip(), code = ${response.body()?.code}")

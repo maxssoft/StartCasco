@@ -6,7 +6,7 @@
     <string name="error_server_unknown">Error of server response. \nTry again.</string>
     <string name="error_server_error">An error occurred while scoring your driving style. \nTry again.</string>
     <string name="error_location_connect">Error of gps location service response. \nTry again.</string>
-    <string name="error_price_is_low">Cat price should be more than €5000.</string>
+    <string name="error_price_is_low">Cat price should be more than € 5000.</string>
     <string name="error_price_is_empty">Car price is empty.</string>
     <string name="error_price_is_invalid">Car price is wrong value.</string>
     <string name="error_not_telegram">Telegram app is not installed.</string>
@@ -18,7 +18,7 @@
     <string name="splash_made">Swiss made</string>
     <string name="splash_continue">Tap to continue</string>
 
-    <string name="start_title">Safe drivers pay less with \nkasko2go..</string>
+    <string name="start_title">Safe drivers pay less with \nkasko2go</string>
     <string name="start_Info">Check your driving style \nand see how much you save.</string>
     <string name="start_car_price_info">Enter your car value. \n€5 000 – €250 000</string>
     <string name="start_history">Trip history</string>
@@ -46,7 +46,7 @@
     <string name="trip_finish_discount">Discount: (%)</string>
     <string name="trip_finish_total_discount">Discount</string>
     <string name="trip_finish_discount_info">The cost is an indication so that you can assess potential savings.</string>
-    <string name="trip_finish_total_price">Total: €%.2f</string>
+    <string name="trip_finish_total_price">Total: € %.2f</string>
 
     <string name="trip_finish_next_info_100">You’ve scored above 80, \nyou will receive a reward.</string>
     <string name="trip_finish_next_info_80">Score 80 or more to get a reward.</string>
@@ -62,7 +62,7 @@
     <string name="reward_take_another">Take another trip</string>
 
     <string name="minutes">min</string>
-    <string name="price">€%.2f</string>
+    <string name="price">€ %.2f</string>
     <string name="next">Next</string>
     <string name="ok">Ok</string>
 

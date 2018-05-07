@@ -34,14 +34,13 @@ class MainPresenter {
 
     fun onStartActivity() {
         EventBus.getDefault().register(this)
-        restoreFragment()
     }
 
     fun onStopActivity() {
         EventBus.getDefault().unregister(this)
     }
 
-    private fun restoreFragment() {
+    public fun restoreFragment() {
         val tripData = ScoringService.getTripData()
         if (tripData.finished) {
             openFragment(OpenFragmentEvent(FragmentTypes.FINISH_TRIP_FRAGMENT))

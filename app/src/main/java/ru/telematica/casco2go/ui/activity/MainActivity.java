@@ -1,14 +1,19 @@
 package ru.telematica.casco2go.ui.activity;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import org.greenrobot.eventbus.EventBus;
+
 import ru.telematica.casco2go.R;
+import ru.telematica.casco2go.model.eventbus.KeyboardShowEvent;
 import ru.telematica.casco2go.ui.base.MainActivityView;
 import ru.telematica.casco2go.ui.base.BaseView;
 import ru.telematica.casco2go.ui.presenters.MainPresenter;
@@ -17,6 +22,8 @@ public class MainActivity extends MainActivityView implements BaseView {
 
     private static final int PERMISSION_LOCATION_REQUEST_CODE = 644;
 
+    private View rootView;
+    private boolean startOnCreate = false;
     private MainPresenter presenter;
 
     @Override
@@ -25,13 +32,21 @@ public class MainActivity extends MainActivityView implements BaseView {
         super.onCreate(null);
         setContentView(R.layout.activity_main);
 
+        rootView = findViewById(R.id.activity_root);
+        setKeyboardObserver();
+
         presenter = new MainPresenter(this);
+        startOnCreate = true;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         presenter.onStartActivity();
+        if (startOnCreate) {
+            startOnCreate = false;
+            presenter.restoreFragment();
+        }
     }
 
     @Override
@@ -62,7 +77,7 @@ public class MainActivity extends MainActivityView implements BaseView {
     @Override
     public void showError(String message, Throwable error) {
         //AlertDialog dialog = new AlertDialog.Builder(this, R.style.AppDialog)
-        if (error != null && error.getMessage() != null && !error.getMessage().isEmpty()){
+        if (error != null && error.getMessage() != null && !error.getMessage().isEmpty()) {
             message = message + "\n\n" + error.getMessage();
         }
 
@@ -87,6 +102,21 @@ public class MainActivity extends MainActivityView implements BaseView {
             InputMethodManager mImm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             mImm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
         }
+    }
+
+    private void setKeyboardObserver() {
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            public void onGlobalLayout () {
+                Rect rect = new Rect();
+                rootView.getWindowVisibleDisplayFrame(rect);
+                int heightDiff = rootView.getRootView().getHeight() - (rect.bottom - rect.top);
+                if (heightDiff > 200) {
+                    EventBus.getDefault().post(new KeyboardShowEvent(true));
+                } else {
+                    EventBus.getDefault().post(new KeyboardShowEvent(false));
+                }
+            }
+        });
     }
 
 }

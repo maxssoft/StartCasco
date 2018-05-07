@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import ru.telematica.casco2go.repository.ConfigRepository;
 import ru.telematica.casco2go.service.http.RetrofitProvider;
 
 import java.io.ByteArrayOutputStream;
@@ -22,8 +23,8 @@ public final class JourneyDataSender implements IJourneyDataSource {
 
     private static final String TAG = JourneyDataSender.class.getSimpleName();
 
-    private static final String TCP_HOST = RetrofitProvider.baseUrl;
-    private static final int TCP_PORT = 50000;
+    private static final String TCP_HOST = RetrofitProvider.scroingTcpHost;
+    private static final int TCP_PORT = RetrofitProvider.scroingTcpPort;
 
     private static final long TRANSFER_PERIOD = 30000;
     private static final int MSG_TRANSFER = 1;
@@ -95,6 +96,7 @@ public final class JourneyDataSender implements IJourneyDataSource {
     }
 
     public void sendJourneyData(Location location, float... acceleration) {
+        Log.d(TAG, String.format("sendJourneyData: Latitude = %.8f, Longitude = %.8f", location.getLatitude(), location.getLongitude()));
         addChunk(JourneyDataChunk.journeyData(location, acceleration));
     }
 
@@ -144,6 +146,7 @@ public final class JourneyDataSender implements IJourneyDataSource {
 
     private static class JourneyDataSenderService extends TcpClientAsync implements IDataSender {
 
+        private final static String TAG = JourneyDataSenderService.class.getSimpleName();
         private final String host = TCP_HOST;
         private final int port = TCP_PORT;
 
@@ -177,7 +180,7 @@ public final class JourneyDataSender implements IJourneyDataSource {
         @Override
         public void start() {
             stop();
-            if (ScoringService.getAuthData().hasAuth() && mJourneyDataSource.hasJourneyData()) {
+            if (ConfigRepository.INSTANCE.getAuthData().hasAuth() && mJourneyDataSource.hasJourneyData()) {
                 mSending = true;
                 connect();
             }
@@ -218,6 +221,8 @@ public final class JourneyDataSender implements IJourneyDataSource {
 
                     final ByteArrayOutputStream chunkByteStream = chunk.toByteStream();
                     boolean success = chunkByteStream != null && sendMessage(chunkByteStream.toByteArray());
+
+                    Log.d(TAG, "sendChunk(): " + chunk.toText());
                     return success;
                 }
 
@@ -258,6 +263,7 @@ public final class JourneyDataSender implements IJourneyDataSource {
                 @Override
                 public void onException(Exception e) {
                     if (mSending) {
+                        Log.e(TAG, "sendData() failed", e);
                         // Что-то пошло не так, но передачу не прервали извне - пробуем ещё раз чуть позже
                         scheduleRetry();
                     }
