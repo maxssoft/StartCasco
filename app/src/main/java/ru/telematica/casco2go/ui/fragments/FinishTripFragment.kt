@@ -99,7 +99,7 @@ class FinishTripFragment: BaseFragment() {
                     TripStatus.LEVEL65 -> R.string.trip_finish_title_65
                     TripStatus.LEVEL80 -> R.string.trip_finish_title_80
                     else -> {
-                        if (tripData.tripTime < ScoringService.MIN_TRIP_TIME) {
+                        if (tripData.scoringData.timeTripSec < ScoringService.MIN_TRIP_TIME_SEC) {
                             R.string.error_trip_time
                         } else
                         if (tripData.gpsLevel < 90) {

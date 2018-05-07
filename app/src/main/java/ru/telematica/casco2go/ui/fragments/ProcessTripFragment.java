@@ -117,7 +117,7 @@ public class ProcessTripFragment extends BaseFragment {
             }
 
 */
-            if (tripData.getTripTime() > ScoringService.Companion.getMAX_TRIP_TIME()){
+            if (tripData.getTripTime() > ScoringService.Companion.getMAX_TRIP_TIME_SEC() * 1000){
                 stopHandler();
                 finishClick();
                 return;

@@ -47,8 +47,8 @@ class ScoringService : Service() {
         val ACTION_STOP_TRIP = "ru.telematica.scoring.service.trip.stop"
         val ACTION_RELEASE = "ru.telematica.scoring.service.release"
 
-        val MIN_TRIP_TIME: Long = 5 * 60 * 1000
-        val MAX_TRIP_TIME: Int = 30 * 60 * 1000
+        val MIN_TRIP_TIME_SEC: Long = 5 * 60
+        val MAX_TRIP_TIME_SEC: Int = 30 * 60
 
         @JvmStatic
         private var _tripData: TripData = TripData()
@@ -181,7 +181,7 @@ class ScoringService : Service() {
                                 timeZone = App.instance.httpService.getTimeZone(location.latitude, location.longitude)
                             }
                         }
-                        .andThen( App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME, timeZone, authData.sessionID) )
+                        .andThen( App.instance.httpService.startTrip(location.latitude, location.longitude, MAX_TRIP_TIME_SEC, timeZone, authData.sessionID) )
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({

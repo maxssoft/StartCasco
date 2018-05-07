@@ -137,7 +137,7 @@ class HttpService(val apiService: TelematicaApi) {
             if (!journey.finishTime.isNull("").isBlank()) {
                 finishTime = DateUtils.serverFormatter.parseDate(journey.finishTime.isNull(""))
             }
-            if (timeTripSec < ScoringService.MIN_TRIP_TIME) {
+            if (timeTripSec < ScoringService.MIN_TRIP_TIME_SEC) {
                 drivingLevel = 0
             }
         }
