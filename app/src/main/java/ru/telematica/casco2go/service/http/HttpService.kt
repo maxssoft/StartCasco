@@ -98,13 +98,9 @@ class HttpService(val apiService: TelematicaApi) {
     }
 
     fun loadHistory(lastScoringData: ScoringData?): Single<List<ScoringData>>{
-        var paramDateTime : String = lastScoringData?.startTimeS.isNull("")
-        if (paramDateTime.isBlank()){
-            paramDateTime = DateUtils.serverFormatter.formatDate(Date())
-        }
-
         return Single.fromCallable{
-            val response = apiService.loadHistory(getAuthHeader(), paramDateTime).execute()
+            val utcTo: String = lastScoringData?.startTimeS.isNull("")
+            val response = apiService.loadHistory(getAuthHeader(), utcTo).execute()
             if (!response.isSuccessful || response.body() == null){
                 Log.e(TAG, "error of loadHistory(), errorCode = ${response.code()}")
                 throw RuntimeException("Server loadHistory response error, error code [${response.code()}]")
@@ -116,7 +112,7 @@ class HttpService(val apiService: TelematicaApi) {
                 result.add(journeyToScoring(journey))
             }
             result.apply {
-                sortWith( compareBy { it.startTime } )
+                sortWith( compareByDescending { it.startTime } )
             }
         }
     }

@@ -7,7 +7,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import ru.telematica.casco2go.model.request.CreateTokenRequest;
 import ru.telematica.casco2go.model.request.RefreshTokenRequest;
 import ru.telematica.casco2go.model.response.CreateAccessTokenResponse;
@@ -51,7 +53,6 @@ public interface TelematicaApi {
     //Call<ResponseBody> loadHistory(
     Call<HistoryResponse> loadHistory(
             @Header("Authorization") String authToken,
-            @Query("UTCTo") String time);
-
+            @Query("UTCTo") String utcTo);
 
 }
