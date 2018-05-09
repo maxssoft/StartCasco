@@ -130,9 +130,6 @@ class TripStatisticFragment : BaseFragment() {
     }
 
     private fun formatMinutes(timeSec: Int): String{
-        if (timeSec < 60) {
-            return ""
-        }
         return (timeSec / 60).toString() + " " + getString(R.string.minutes)
     }
 

@@ -3,114 +3,114 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-<RelativeLayout
-    android:layout_margin="@dimen/standard_margin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_info"
+    <RelativeLayout
+        android:layout_margin="@dimen/standard_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/standard_margin"
-            android:layout_marginRight="@dimen/standard_margin"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp">
+            app:cardBackgroundColor="@color/white">
 
-            <TextView
-                android:id="@+id/textTitle"
-                style="@style/textLargeTitle"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="@string/reward_title" />
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:layout_marginRight="@dimen/standard_margin"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp">
 
-            <TextView
-                android:id="@+id/step_1"
-                style="@style/textNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textTitle"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/block_margin"
-                android:gravity="center_horizontal"
-                android:text="@string/reward_step_1" />
+                <TextView
+                    android:id="@+id/textTitle"
+                    style="@style/textLargeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@string/reward_title" />
 
-            <TextView
-                android:id="@+id/textLevel"
-                style="@style/textNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/step_1"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="92"
-                android:textColor="@color/green"
-                android:textSize="46sp" />
+                <TextView
+                    android:id="@+id/step_1"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textTitle"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/block_margin"
+                    android:gravity="center_horizontal"
+                    android:text="@string/reward_step_1" />
 
-            <TextView
-                android:id="@+id/text_drive_style"
-                style="@style/textLargeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textLevel"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="@string/trip_finish_driving_style" />
+                <TextView
+                    android:id="@+id/textLevel"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/step_1"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="92"
+                    android:textColor="@color/green"
+                    android:textSize="46sp" />
 
-            <TextView
-                android:id="@+id/step_23"
-                style="@style/textNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_margin"
-                android:layout_below="@+id/text_drive_style"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="@string/reward_step_23" />
+                <TextView
+                    android:id="@+id/text_drive_style"
+                    style="@style/textLargeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textLevel"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@string/trip_finish_driving_style" />
 
-            <TextView
-                android:id="@+id/one_day"
-                style="@style/textNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_margin"
-                android:layout_below="@+id/step_23"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="@string/reward_one_day" />
+                <TextView
+                    android:id="@+id/step_23"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:layout_below="@+id/text_drive_style"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@string/reward_step_23" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/one_day"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:layout_below="@+id/step_23"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@string/reward_one_day" />
 
-    </android.support.v7.widget.CardView>
+            </RelativeLayout>
 
-    <TextView
-        android:id="@+id/nextButton"
-        style="@style/TitleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_block_margin"
-        android:layout_below="@+id/card_info"
-        android:text="@string/reward_join_telegram"
-        />
+        </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/anotherTripButton"
-        style="@style/TitleLightButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_margin"
-        android:layout_below="@+id/nextButton"
-        android:text="@string/reward_take_another"
-        />
+        <TextView
+            android:id="@+id/nextButton"
+            style="@style/TitleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_block_margin"
+            android:layout_below="@+id/card_info"
+            android:text="@string/reward_join_telegram"
+            />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/anotherTripButton"
+            style="@style/TitleLightButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_below="@+id/nextButton"
+            android:text="@string/reward_take_another"
+            />
+
+    </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

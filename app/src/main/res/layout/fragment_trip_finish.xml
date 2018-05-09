@@ -1,74 +1,80 @@
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    android:padding="@dimen/standard_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_info"
+    <RelativeLayout
+        android:layout_margin="@dimen/standard_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/standard_margin"
-            android:layout_marginRight="@dimen/standard_margin"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp">
+            app:cardBackgroundColor="@color/white">
 
-            <TextView
-                android:id="@+id/textTitle"
-                style="@style/textNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:text="@string/trip_finish_title_80"
-                android:textColor="@color/green" />
-
-            <FrameLayout
-                android:id="@+id/statistic_container"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textTitle"
-                />
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:layout_marginRight="@dimen/standard_margin"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp">
 
-            <TextView
-                android:id="@+id/discount_info"
-                style="@style/textCaption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center_horizontal"
-                android:layout_below="@+id/statistic_container"
-                android:text="@string/trip_finish_discount_info" />
+                <TextView
+                    android:id="@+id/textTitle"
+                    style="@style/textNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@string/trip_finish_title_80"
+                    android:textColor="@color/green" />
 
-        </RelativeLayout>
+                <FrameLayout
+                    android:id="@+id/statistic_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textTitle"
+                    />
 
-    </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/discount_info"
+                    style="@style/textCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/statistic_container"
+                    android:text="@string/trip_finish_discount_info" />
 
-    <TextView
-        android:id="@+id/nextTextInfo"
-        style="@style/textNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/card_info"
-        android:text="@string/trip_finish_next_info_100" />
+            </RelativeLayout>
 
-    <TextView
-        android:id="@+id/nextButton"
-        style="@style/TitleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nextTextInfo"
-        android:text="@string/trip_finish_next_100"
-        />
+        </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/nextTextInfo"
+            style="@style/textNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/card_info"
+            android:text="@string/trip_finish_next_info_100" />
+
+        <TextView
+            android:id="@+id/nextButton"
+            style="@style/TitleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nextTextInfo"
+            android:text="@string/trip_finish_next_100"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>
