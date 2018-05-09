@@ -36,6 +36,11 @@
 
         <service android:name=".service.ScoringService" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2148fae25180545a1f83ccd26663859906696aef"
+            />
+
     </application>
 
 </manifest>
