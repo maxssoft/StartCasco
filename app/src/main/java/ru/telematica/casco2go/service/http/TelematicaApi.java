@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -27,7 +28,7 @@ public interface TelematicaApi {
     @POST("api/users/signupscoringtest?silentMode=true")
     Call<CreateAccessTokenResponse> createToken(@Body CreateTokenRequest request);
 
-    @POST("api/users/signupscoringtest?silentMode=true")
+    @PUT("api/users")
     Call<CreateAccessTokenResponse> refreshToken(@Body RefreshTokenRequest request);
 
     @GET("api/Common/GetStatus")

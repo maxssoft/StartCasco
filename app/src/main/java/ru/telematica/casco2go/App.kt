@@ -41,9 +41,7 @@ class App : android.support.multidex.MultiDexApplication() {
     }
 
     private fun initCrashlytics() {
-        val builder = CrashlyticsCore.Builder()
-        //builder.disabled(BuildConfig.DEBUG)
-        val core = builder.build()
+        val core = CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()
         Fabric.with(this, Crashlytics.Builder().core(core).build())
     }
 

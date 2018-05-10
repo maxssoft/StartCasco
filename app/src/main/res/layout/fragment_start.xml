@@ -15,8 +15,8 @@
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:layout_marginTop="@dimen/large_block_margin"
-        android:textColor="@color/text_primary_w"
         android:gravity="center_horizontal"
+        android:textColor="@color/text_primary_w"
         android:text="@string/start_title" />
 
     <TextView
@@ -62,7 +62,7 @@
         android:singleLine="true"
         android:textAlignment="center"
         android:textColor="@color/text_primary_w"
-        android:textSize="36sp" />
+        android:textSize="@dimen/text_price_edit" />
 
     <RelativeLayout
         android:id="@+id/bottom_layout"
@@ -72,8 +72,8 @@
 
         <ImageView
             android:id="@+id/start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/trip_button_size"
+            android:layout_height="@dimen/trip_button_size"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_start_driving" />
 
@@ -85,7 +85,7 @@
             android:layout_alignLeft="@+id/start_button"
             android:layout_alignRight="@+id/start_button"
             android:layout_alignTop="@+id/start_button"
-            android:layout_margin="36dp"
+            android:layout_margin="@dimen/trip_button_progress_offset"
             android:src="@drawable/ic_indicator"
             android:visibility="invisible" />
 

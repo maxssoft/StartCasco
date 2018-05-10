@@ -31,10 +31,10 @@ class HttpService(val apiService: TelematicaApi) {
         return response.body().isNull(CreateAccessTokenResponse())
     }
 
-    fun refreshAccessToken(request: RefreshTokenRequest): CreateAccessTokenResponse {
-        val response = apiService.refreshToken(request).execute()
+    fun refreshAccessToken(userID: String, code: Long, AccessCompanyID: Int, AccessCompanySecret: String): CreateAccessTokenResponse {
+        val response = apiService.refreshToken(RefreshTokenRequest(AccessCompanyID, AccessCompanySecret, code, userID )).execute()
         if (!response.isSuccessful || response.body() == null){
-            Log.e(TAG, "error of createAccessToken(), errorCode = ${response.code()}")
+            Log.e(TAG, "error of refreshAccessToken(), errorCode = ${response.code()}")
             throw RuntimeException("Server auth response error, error code [${response.code()}]")
         }
         return response.body().isNull(CreateAccessTokenResponse())

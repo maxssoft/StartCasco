@@ -7,6 +7,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
+
+import ru.telematica.casco2go.model.eventbus.ErrorEvent;
 import ru.telematica.casco2go.repository.ConfigRepository;
 import ru.telematica.casco2go.service.http.RetrofitProvider;
 
@@ -142,6 +145,8 @@ public final class JourneyDataSender implements IJourneyDataSource {
         void start();
 
         void stop();
+
+        void onError(Throwable t);
     }
 
     private static class JourneyDataSenderService extends TcpClientAsync implements IDataSender {
@@ -196,6 +201,11 @@ public final class JourneyDataSender implements IJourneyDataSource {
                 stopClient();
             }
             mainThreadHandler.removeCallbacksAndMessages(null);
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            // EventBus.getDefault().post(new ErrorEvent("", t));
         }
 
         /**
@@ -266,6 +276,8 @@ public final class JourneyDataSender implements IJourneyDataSource {
                         Log.e(TAG, "sendData() failed", e);
                         // Что-то пошло не так, но передачу не прервали извне - пробуем ещё раз чуть позже
                         scheduleRetry();
+
+                        onError(e);
                     }
                 }
 

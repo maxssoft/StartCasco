@@ -48,10 +48,11 @@ class AuthenticationInterceptor : Authenticator {
     @Synchronized
     private fun requestAuthHeader(): String {
         var authData = ConfigRepository.authData
+
         // Если токен существовал и истек срок действия, то запрашиваем новый
         if (authData.isExpired()){
-            authData = createAuthData(App.instance.httpService.createAccessToken(CreateTokenRequest(AccessCompanyID, AccessCompanySecret)))
-            //authData = createAuthData(App.instance.httpService.refreshAccessToken(RefreshTokenRequest(AccessCompanyID, AccessCompanySecret, authData.refreshToken)))
+            // authData = createAuthData(App.instance.httpService.createAccessToken(CreateTokenRequest(AccessCompanyID, AccessCompanySecret)))
+            authData = createAuthData(App.instance.httpService.refreshAccessToken(authData.userId.toString(), authData.refreshToken, AccessCompanyID, AccessCompanySecret))
         } else {
             authData = createAuthData(App.instance.httpService.createAccessToken(CreateTokenRequest(AccessCompanyID, AccessCompanySecret)))
         }

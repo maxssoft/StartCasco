@@ -8,7 +8,7 @@ class AuthData {
     var userId: Long = 0
     var sessionID: Long = 0
     var token: String = ""
-    var refreshToken: Int = 0
+    var refreshToken: Long = 0
     var expiredDate: Long = 0
 
     fun getAuthHeader(): String {

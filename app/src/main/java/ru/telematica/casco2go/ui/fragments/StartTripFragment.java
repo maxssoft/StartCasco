@@ -108,6 +108,7 @@ public class StartTripFragment extends BaseFragment {
             Permissions.INSTANCE.requestLocation(getActivity());
             return;
         }
+
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){

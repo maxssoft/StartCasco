@@ -10,7 +10,7 @@ class CreateAccessTokenResponse {
 
     inner class AccessToken {
         val access_token: String? = null
-        val refresh_token: Int = 0
+        val refresh_token: Long = 0
         val user_id: Long? = null
         val expires_in: Long = 0
         val created: Long = 0

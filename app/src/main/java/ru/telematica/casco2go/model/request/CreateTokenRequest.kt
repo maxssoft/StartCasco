@@ -6,5 +6,5 @@ package ru.telematica.casco2go.model.request
 class CreateTokenRequest(val CompanyID: Int = 0, val CompanySecret: String = "", val silentMode: Boolean = true) {
 }
 
-class RefreshTokenRequest(val CompanyID: Int = 0, val CompanySecret: String = "", val code: Int = 0, val phone: String = "") {
+class RefreshTokenRequest(val CompanyID: Int = 0, val CompanySecret: String = "", val code: Long = 0, val phone: String = "") {
 }

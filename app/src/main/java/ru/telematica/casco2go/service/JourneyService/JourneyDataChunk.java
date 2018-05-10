@@ -86,7 +86,7 @@ public final class JourneyDataChunk {
 
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(), "{type=%s; ts=%d}", type, timestamp);
+        return String.format(Locale.getDefault(), "{user_id=%s, type=%s; ts=%d}", user_id, type, timestamp);
     }
 
     public String toText() {
