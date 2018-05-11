@@ -19,6 +19,7 @@ import ru.telematica.casco2go.model.ScoringData
 import ru.telematica.casco2go.ui.adapters.HistoryListAdapter
 import ru.telematica.casco2go.ui.adapters.pagination.PaginationAdapterListener
 import io.reactivex.Completable
+import ru.telematica.casco2go.repository.ConfigRepository
 
 /**
  * Created by m.sidorov on 01.05.2018.
@@ -42,6 +43,9 @@ class HistoryFragment : BaseFragment(){
 
     @BindView(R.id.historyList)
     lateinit var historyList: RecyclerView
+
+    @BindView(R.id.textUserId)
+    lateinit var textUserId: TextView
 
     companion object {
         @JvmStatic
@@ -70,6 +74,7 @@ class HistoryFragment : BaseFragment(){
     }
 
     private fun updateInfo() {
+        textUserId.setText(ConfigRepository.authData.userId.toString())
         textTitle.setText(R.string.trip_history_title)
         backButton.setOnClickListener { backClick() }
         emptyTitleText.setText(R.string.trip_history_empty)

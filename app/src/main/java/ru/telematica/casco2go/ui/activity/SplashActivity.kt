@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import ru.telematica.casco2go.BuildConfig
 
 import ru.telematica.casco2go.R
 
@@ -30,6 +32,9 @@ class SplashActivity : AppCompatActivity() {
     @BindView(R.id.bottom_layout)
     lateinit var bottom_layout: ViewGroup
 
+    @BindView(R.id.textVersion)
+    lateinit var textVersion: TextView
+
     private val handler: Handler = Handler()
     private var animationStarted: Boolean = false
 
@@ -43,6 +48,8 @@ class SplashActivity : AppCompatActivity() {
         logoImage.setOnTouchListener(onTouchListener)
         textDescription.setOnTouchListener(onTouchListener)
         textDescription.setOnTouchListener(onTouchListener)
+
+        textVersion.setText("ver " + BuildConfig.VERSION_NAME)
 
         if (!animationStarted) {
             startAnimations()
@@ -58,6 +65,8 @@ class SplashActivity : AppCompatActivity() {
         animationStarted = true
 
         logoImage.animate().alpha(1f).setInterpolator(DecelerateInterpolator()).setDuration(3000).start()
+        textVersion.animate().alpha(1f).setInterpolator(DecelerateInterpolator()).setDuration(3000).start()
+
         textDescription.animate().alpha(1f).setInterpolator(AccelerateInterpolator()).setDuration(1500).start()
         textContinue.animate().alpha(1f).setInterpolator(AccelerateInterpolator()).setDuration(600).setStartDelay(3000).start()
     }
