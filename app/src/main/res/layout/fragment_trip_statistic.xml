@@ -233,7 +233,7 @@
             app:layout_constraintTop_toBottomOf="@+id/line_chunk_red" />
 
         <TextView
-            android:id="@+id/tv_finish_journey_scale_discount_20"
+            android:id="@+id/score_discount_0"
             style="@style/textCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
             app:layout_constraintTop_toBottomOf="@+id/line_chunk_red" />
 
         <TextView
-            android:id="@+id/tv_finish_journey_scale_discount_10"
+            android:id="@+id/score_discount_50"
             style="@style/textCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
             app:layout_constraintTop_toBottomOf="@+id/line_chunk_orange" />
 
         <TextView
-            android:id="@+id/tv_finish_journey_scale_discount_5"
+            android:id="@+id/score_discount_65"
             style="@style/textCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -260,7 +260,7 @@
             app:layout_constraintTop_toBottomOf="@+id/line_chunk_yellow" />
 
         <TextView
-            android:id="@+id/tv_finish_journey_scale_discount_0"
+            android:id="@+id/score_discount_80"
             style="@style/textCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

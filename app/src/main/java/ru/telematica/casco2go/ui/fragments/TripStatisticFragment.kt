@@ -50,6 +50,18 @@ class TripStatisticFragment : BaseFragment() {
     @BindView(R.id.scopeContainer)
     lateinit var scopeContainer: ViewGroup
 
+    @BindView(R.id.score_discount_0)
+    lateinit var textScoreDiscount_0: TextView
+
+    @BindView(R.id.score_discount_50)
+    lateinit var textScoreDiscount_50: TextView
+
+    @BindView(R.id.score_discount_65)
+    lateinit var textScoreDiscount_65: TextView
+
+    @BindView(R.id.score_discount_80)
+    lateinit var textScoreDiscount_80: TextView
+
     companion object {
 
         val SCORING_DATA_PARAM = "scoring.data.param"
@@ -91,10 +103,8 @@ class TripStatisticFragment : BaseFragment() {
     }
 
     private fun updateInfo(data: ScoringData) {
-        val tripFailed = data.drivingLevel < 65
-
-        textLevel.setTextColor(data.getColorResId())
-        textTotalDiscount.setTextColor(data.getColorResId())
+        textLevel.setTextColor(resources.getColor(data.getColorResId()))
+        textTotalDiscount.setTextColor(resources.getColor(data.getColorResId()))
 
         textLevel.setText("${data.drivingLevel}");
         if (data.startTime != null) {
@@ -103,6 +113,11 @@ class TripStatisticFragment : BaseFragment() {
         if (data.finishTime != null) {
             textEndTime.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(data.finishTime))
         }
+        textScoreDiscount_0.setText("${data.getDiscount(0)}%")
+        textScoreDiscount_50.setText("${data.getDiscount(50)}%")
+        textScoreDiscount_65.setText("${data.getDiscount(65)}%")
+        textScoreDiscount_80.setText("${data.getDiscount(80)}%")
+
         val min = getString(R.string.minutes)
         textTripTime.setText(formatMinutes(data.timeTripSec))
         textTravelTime.setText(formatMinutes(data.timeInTravelSec));

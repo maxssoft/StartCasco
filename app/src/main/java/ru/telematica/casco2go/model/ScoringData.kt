@@ -44,6 +44,19 @@ class ScoringData {
             }
         }
 
+    fun getDiscount(): Int{
+        return getDiscount(drivingLevel)
+    }
+
+    fun getDiscount(level: Int): Int{
+        when(level){
+            in 50..64 -> return 10
+            in 65..79 -> return 30
+            in 80..100 -> return 45
+            else -> return 0
+        }
+    }
+
     fun getOneMinuteCost(): Float{
         when(carPrice){
             in 5000..9999 -> return 0.005f
