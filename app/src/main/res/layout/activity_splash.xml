@@ -12,10 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/large_offset"
         android:layout_marginTop="@dimen/large_offset"
         android:alpha="0.01"
         android:src="@drawable/logo_transparent" />
+
+    <TextView
+        android:id="@+id/textVersion"
+        style="@style/textStrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/logoImage"
+        android:layout_below="@+id/logoImage"
+        android:alpha="0.01"
+        android:text="ver 1.1.1.30"
+        android:textColor="@color/text_primary_w" />
+
 
     <TextView
         android:id="@+id/textDescription"
@@ -25,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/logoImage"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_offset"
         android:layout_marginLeft="@dimen/large_block_margin"
         android:layout_marginRight="@dimen/large_block_margin"
         android:gravity="center_horizontal"

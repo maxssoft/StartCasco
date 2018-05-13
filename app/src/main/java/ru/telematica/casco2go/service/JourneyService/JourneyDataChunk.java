@@ -48,7 +48,7 @@ public final class JourneyDataChunk {
     private JourneyDataChunk(@JsonProperty("type") Type type) {
         this.type = type;
         this.uuid = UUID.randomUUID().toString();
-        this.user_id = String.valueOf(ConfigRepository.INSTANCE.getAuthData().getUserId());
+        this.user_id = String.format(Locale.US, "%036d", ConfigRepository.INSTANCE.getAuthData().getUserId());
     }
 
     public static JourneyDataChunk id() {

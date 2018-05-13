@@ -7,27 +7,73 @@
 
     <include layout="@layout/title_layout" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/historyList"
+    <RelativeLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="@dimen/standard_margin"
-        android:layout_marginLeft="@dimen/standard_margin"
-        android:layout_marginRight="@dimen/standard_margin"
-        android:layout_marginTop="@dimen/small_margin">
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/toolbar">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/historyList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/standard_margin"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/small_margin">
 
-    <include layout="@layout/view_empty_res"
+        </android.support.v7.widget.RecyclerView>
+
+        <include
+            layout="@layout/view_empty_res"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+
+        <include
+            layout="@layout/view_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"/>
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/small_margin"
+        android:layout_alignParentBottom="true">
 
-    <include
-        layout="@layout/view_loader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"/>
+        <View
+            android:id="@+id/bottom_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
+
+        <TextView
+            android:id="@+id/text_user"
+            style="@style/textMedium"
+            android:layout_marginVertical="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/bottom_divider"
+            android:text="userId:" />
+
+        <TextView
+            android:id="@+id/textUserId"
+            style="@style/textStrong"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginVertical="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_user"
+            android:layout_below="@+id/bottom_divider"
+            android:text="134 2342342 3423423" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
