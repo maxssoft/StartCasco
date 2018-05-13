@@ -83,11 +83,13 @@ class HistoryListAdapter(listener: PaginationAdapterListener) : PaginationLoader
         fun setData(item: ScoringData) {
             this.item = item
 
-            if (item.drivingLevel <= 65){
-                indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_red)
-            } else {
-                indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_green)
+            when(item.tripStatus){
+                ScoringData.TripStatus.LEVEL50 -> indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_orange)
+                ScoringData.TripStatus.LEVEL65 -> indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_yellow)
+                ScoringData.TripStatus.LEVEL80 -> indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_green)
+                else -> indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_red)
             }
+
             if (item.finishTime != null){
                 dateTrip?.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(item.finishTime))
             }

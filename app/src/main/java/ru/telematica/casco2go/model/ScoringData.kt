@@ -1,12 +1,16 @@
 package ru.telematica.casco2go.model
 
+import ru.telematica.casco2go.R
 import ru.telematica.casco2go.repository.ConfigRepository
+import ru.telematica.casco2go.ui.fragments.FinishTripFragment
 import java.util.*
 
 /**
  * Created by m.sidorov on 05.05.2018.
  */
 class ScoringData {
+
+    enum class TripStatus {FAILED, LEVEL50, LEVEL65, LEVEL80}
 
     var startTimeS: String? = null
 
@@ -30,14 +34,15 @@ class ScoringData {
         carPrice = ConfigRepository.carPrice
     }
 
-    fun getDiscount(): Int{
-        when(drivingLevel){
-            in 50..64 -> return 10
-            in 65..79 -> return 30
-            in 80..100 -> return 45
-            else -> return 0
+    val tripStatus: TripStatus
+        get() {
+            return when (drivingLevel) {
+                in 50..64 -> TripStatus.LEVEL50
+                in 65..79 -> TripStatus.LEVEL65
+                in 80..100 -> TripStatus.LEVEL80
+                else -> TripStatus.FAILED
+            }
         }
-    }
 
     fun getOneMinuteCost(): Float{
         when(carPrice){
@@ -56,4 +61,13 @@ class ScoringData {
         }
     }
 
+    fun getColorResId(): Int{
+        when (tripStatus) {
+            TripStatus.FAILED -> return R.color.error
+            TripStatus.LEVEL50 -> return R.color.score_orange
+            TripStatus.LEVEL65 -> return R.color.score_yellow
+            TripStatus.LEVEL80 -> return R.color.score_green
+            else -> return R.color.error
+        }
+    }
 }

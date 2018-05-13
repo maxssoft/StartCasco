@@ -93,13 +93,8 @@ class TripStatisticFragment : BaseFragment() {
     private fun updateInfo(data: ScoringData) {
         val tripFailed = data.drivingLevel < 65
 
-        if (tripFailed) {
-            textLevel.setTextColor(resources.getColor(R.color.error))
-            textTotalDiscount.setTextColor(resources.getColor(R.color.error))
-        } else {
-            textLevel.setTextColor(resources.getColor(R.color.green))
-            textTotalDiscount.setTextColor(resources.getColor(R.color.green))
-        }
+        textLevel.setTextColor(data.getColorResId())
+        textTotalDiscount.setTextColor(data.getColorResId())
 
         textLevel.setText("${data.drivingLevel}");
         if (data.startTime != null) {

@@ -11,6 +11,7 @@ import butterknife.ButterKnife
 import org.greenrobot.eventbus.EventBus
 
 import ru.telematica.casco2go.R
+import ru.telematica.casco2go.model.ScoringData
 import ru.telematica.casco2go.model.eventbus.*
 import ru.telematica.casco2go.service.ScoringService
 import ru.telematica.casco2go.utils.Animations
@@ -21,8 +22,6 @@ import ru.telematica.casco2go.model.TripData
  * Created by m.sidorov on 01.05.2018.
  */
 class FinishTripFragment: BaseFragment() {
-
-    enum class TripStatus {FAILED, LEVEL50, LEVEL65, LEVEL80}
 
     @BindView(R.id.textTitle)
     lateinit var textTitle: TextView
@@ -64,17 +63,12 @@ class FinishTripFragment: BaseFragment() {
 
     private fun updateInfo(tripData: TripData) {
 
-        val tripStatus = when(tripData.scoringData.drivingLevel) {
-            in 50..64 -> TripStatus.LEVEL50
-            in 65..79 -> TripStatus.LEVEL65
-            in 80..100 -> TripStatus.LEVEL80
-            else -> TripStatus.FAILED
-        }
-
+        val tripStatus = tripData.scoringData.tripStatus
         val tripLevelLow = tripData.scoringData.drivingLevel <= 80;
 
+        textTitle.setTextColor(resources.getColor(tripData.scoringData.getColorResId()))
+
         if (tripLevelLow) {
-            textTitle.setTextColor(resources.getColor(R.color.error))
 
             nextTextInfo.setText(R.string.trip_finish_next_info_80)
 
@@ -83,7 +77,6 @@ class FinishTripFragment: BaseFragment() {
                 Animations.startPressedScaleAnim(finishButton) { finishClick() }
             }
         } else {
-            textTitle.setTextColor(resources.getColor(R.color.green))
 
             nextTextInfo.setText(R.string.trip_finish_next_info_100)
 
@@ -95,9 +88,9 @@ class FinishTripFragment: BaseFragment() {
 
         textTitle.setText(
                 when(tripStatus){
-                    TripStatus.LEVEL50 -> R.string.trip_finish_title_50
-                    TripStatus.LEVEL65 -> R.string.trip_finish_title_65
-                    TripStatus.LEVEL80 -> R.string.trip_finish_title_80
+                    ScoringData.TripStatus.LEVEL50 -> R.string.trip_finish_title_50
+                    ScoringData.TripStatus.LEVEL65 -> R.string.trip_finish_title_65
+                    ScoringData.TripStatus.LEVEL80 -> R.string.trip_finish_title_80
                     else -> {
                         if (tripData.scoringData.timeTripSec < ScoringService.MIN_TRIP_TIME_SEC) {
                             R.string.error_trip_time
