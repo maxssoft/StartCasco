@@ -6,7 +6,7 @@
     <string name="error_server_unknown">Error of server response. \nTry again.</string>
     <string name="error_server_error">An error occurred while scoring your driving style. \nTry again.</string>
     <string name="error_location_connect">Error of gps location service response. \nTry again.</string>
-    <string name="error_price_is_low">Cat price should be more than € 5000.</string>
+    <string name="error_price_is_low">Car price should be more than € 5000.</string>
     <string name="error_price_is_empty">Car price is empty.</string>
     <string name="error_price_is_invalid">Car price is wrong value.</string>
     <string name="error_not_telegram">Telegram app is not installed.</string>

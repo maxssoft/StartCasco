@@ -20,5 +20,9 @@ class Journey {
     val startTime: String? = null // "2018-05-06T10:20:18Z"
     @SerializedName("FinishTime")
     val finishTime: String? = null
+    @SerializedName("UTSFrom")
+    val utsFromSec: Long? = null
+    @SerializedName("UTSTo")
+    val utsToSec: Long? = null
 
 }

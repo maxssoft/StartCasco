@@ -90,8 +90,8 @@ class HistoryListAdapter(listener: PaginationAdapterListener) : PaginationLoader
                 else -> indicator?.background = itemView?.context?.resources?.getDrawable(R.drawable.circle_indicator_red)
             }
 
-            if (item.finishTime != null){
-                dateTrip?.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(item.finishTime))
+            if (item.startTime != null){
+                dateTrip?.setText(SimpleDateFormat(DateUtils.DATETIME_VIEW_FORMAT).format(item.startTime))
             }
             costTrip?.setText(itemView?.context?.getString(R.string.price, item.tripCost));
         }

@@ -126,6 +126,14 @@ class HttpService(val apiService: TelematicaApi) {
             val cost = ((timeTripSec / 60) * getOneMinuteCost()).toFloat()
             tripCost = cost - cost * getDiscount() / 100f
 
+
+            if (journey.utsFromSec != null) {
+                startTime = Date(1000 * journey.utsFromSec)
+            }
+            if (journey.utsToSec != null) {
+                finishTime = Date(1000 * journey.utsToSec)
+            }
+/*
             startTimeS =journey.startTime
             if (!startTimeS.isNull("").isBlank()) {
                 startTime = DateUtils.serverFormatter.parseDate(startTimeS.isNull(""))
@@ -133,6 +141,7 @@ class HttpService(val apiService: TelematicaApi) {
             if (!journey.finishTime.isNull("").isBlank()) {
                 finishTime = DateUtils.serverFormatter.parseDate(journey.finishTime.isNull(""))
             }
+*/
             if (timeTripSec < ScoringService.MIN_TRIP_TIME_SEC) {
                 drivingLevel = 0
             }
